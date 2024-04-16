@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- 日志存放路径 -->
-    <property name="log.path" value="/home/blog/logs"/>
+    <property name="log.path" value="/home/i-home/logs"/>
     <!-- 日志输出格式 -->
     <property name="log.pattern"
               value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{20} -  %boldMagenta([%method,%line]) - %cyan(%msg%n)"/>
