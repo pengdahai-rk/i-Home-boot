@@ -19,6 +19,8 @@
         <java.version>21</java.version>
         <mybatis.boot.version>2.2.2</mybatis.boot.version>
         <google.guava.version>33.1.0-jre</google.guava.version>
+        <apache.lang3.version>3.14.0</apache.lang3.version>
+        <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
     </properties>
 
     <dependencies>
@@ -58,6 +60,18 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google.guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${apache.commons-collections4.version}</version>
         </dependency>
 
         <dependency>
