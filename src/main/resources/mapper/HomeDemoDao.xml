@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.snow.ihome.dao.HomeDemoDao">
+    <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.HomeDemoDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="demo_name" jdbcType="VARCHAR" property="demoName"/>
+        <result column="demo_decimal" jdbcType="DECIMAL" property="demoDecimal"/>
+        <result column="demo_text" jdbcType="VARCHAR" property="demoText"/>
+        <result column="demo_status" jdbcType="BOOLEAN" property="demoStatus"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="club.snow.ihome.bean.domain.HomeDemoDO">
+        <result column="demo_blob" jdbcType="BLOB" property="demoBlob"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, demo_name, demo_decimal, demo_text, demo_status, create_time, create_by, update_time,
+    update_by
+    </sql>
+    <sql id="Blob_Column_List">
+        demo_blob
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from home_demo
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from home_demo
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.HomeDemoDO" useGeneratedKeys="true">
+        insert into home_demo (demo_name, demo_decimal, demo_text,
+                               demo_status, create_time, create_by,
+                               update_time, update_by, demo_blob)
+        values (#{demoName,jdbcType=VARCHAR}, #{demoDecimal,jdbcType=DECIMAL}, #{demoText,jdbcType=VARCHAR},
+                #{demoStatus,jdbcType=BOOLEAN}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{demoBlob,jdbcType=BLOB})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.HomeDemoDO" useGeneratedKeys="true">
+        insert into home_demo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="demoName != null">
+                demo_name,
+            </if>
+            <if test="demoDecimal != null">
+                demo_decimal,
+            </if>
+            <if test="demoText != null">
+                demo_text,
+            </if>
+            <if test="demoStatus != null">
+                demo_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="demoBlob != null">
+                demo_blob,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="demoName != null">
+                #{demoName,jdbcType=VARCHAR},
+            </if>
+            <if test="demoDecimal != null">
+                #{demoDecimal,jdbcType=DECIMAL},
+            </if>
+            <if test="demoText != null">
+                #{demoText,jdbcType=VARCHAR},
+            </if>
+            <if test="demoStatus != null">
+                #{demoStatus,jdbcType=BOOLEAN},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="demoBlob != null">
+                #{demoBlob,jdbcType=BLOB},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+        update home_demo
+        <set>
+            <if test="demoName != null">
+                demo_name = #{demoName,jdbcType=VARCHAR},
+            </if>
+            <if test="demoDecimal != null">
+                demo_decimal = #{demoDecimal,jdbcType=DECIMAL},
+            </if>
+            <if test="demoText != null">
+                demo_text = #{demoText,jdbcType=VARCHAR},
+            </if>
+            <if test="demoStatus != null">
+                demo_status = #{demoStatus,jdbcType=BOOLEAN},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="demoBlob != null">
+                demo_blob = #{demoBlob,jdbcType=BLOB},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+        update home_demo
+        set demo_name    = #{demoName,jdbcType=VARCHAR},
+            demo_decimal = #{demoDecimal,jdbcType=DECIMAL},
+            demo_text    = #{demoText,jdbcType=VARCHAR},
+            demo_status  = #{demoStatus,jdbcType=BOOLEAN},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            create_by    = #{createBy,jdbcType=VARCHAR},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP},
+            update_by    = #{updateBy,jdbcType=VARCHAR},
+            demo_blob    = #{demoBlob,jdbcType=BLOB}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+        update home_demo
+        set demo_name    = #{demoName,jdbcType=VARCHAR},
+            demo_decimal = #{demoDecimal,jdbcType=DECIMAL},
+            demo_text    = #{demoText,jdbcType=VARCHAR},
+            demo_status  = #{demoStatus,jdbcType=BOOLEAN},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            create_by    = #{createBy,jdbcType=VARCHAR},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP},
+            update_by    = #{updateBy,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

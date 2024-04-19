@@ -1,3 +1,23 @@
+# demo信息表
+DROP TABLE IF EXISTS `home_demo`;
+CREATE TABLE `home_demo`
+(
+    `id`           bigint(0)   NOT NULL COMMENT '主键id',
+    `demo_name`    varchar(32) NOT NULL COMMENT 'demo名称',
+    `demo_decimal` decimal(10, 8)       DEFAULT NULL COMMENT 'demo小数',
+    `demo_blob`    blob COMMENT 'demo二进制对象',
+    `demo_text`    text COLLATE utf8mb4_general_ci COMMENT 'demo文本',
+    `demo_status`  tinyint(1)  NOT NULL DEFAULT 0 COMMENT 'demo  status 0正常 1注销 默认0',
+    `create_time`  datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+    `create_by`    varchar(64)          DEFAULT '' COMMENT '创建者',
+    `update_time`  datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `update_by`    varchar(64)          DEFAULT '' COMMENT '更新者',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = 'demo表格'
+  ROW_FORMAT = Dynamic;
+
 # 用户登录信息表
 DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login`
@@ -17,6 +37,11 @@ CREATE TABLE `user_login`
     `create_by`       varchar(64)          DEFAULT '' COMMENT '创建者',
     `update_time`     datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `update_by`       varchar(64)          DEFAULT '' COMMENT '更新者',
-    PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户登录信息表' ROW_FORMAT = Dynamic;
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uk_user_name` (`user_name`) USING BTREE COMMENT '用户名唯一索引',
+    UNIQUE KEY `uk_email` (`email`) USING BTREE COMMENT '邮箱唯一索引'
+) ENGINE = InnoDB
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = '用户登录信息表'
+  ROW_FORMAT = Dynamic;
 
