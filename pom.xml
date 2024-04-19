@@ -21,6 +21,7 @@
         <google.guava.version>33.1.0-jre</google.guava.version>
         <apache.lang3.version>3.14.0</apache.lang3.version>
         <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
+        <alibaba.ttl.version>2.14.4</alibaba.ttl.version>
     </properties>
 
     <dependencies>
@@ -54,6 +55,12 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>${alibaba.ttl.version}</version>
         </dependency>
 
         <dependency>

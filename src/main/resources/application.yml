@@ -22,4 +22,16 @@ mybatis:
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
   configLocation: classpath:mybatis/mybatis-config.xml
+i-home:
+  thread-pool:
+    # 核心线程数
+    core-size: 20
+    # 最大线程数
+    max-size: 80
+    # 任务队列长度
+    queue-capacity: 1000
+    # 线程空闲最大时间 默认秒
+    keep-alive: 300
+    # 线程名前缀
+    name-prefix: i-Home
 
