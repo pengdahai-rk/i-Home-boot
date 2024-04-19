@@ -1,8 +1,9 @@
 package club.snow.ihome.bean.domain;
 
+import club.snow.ihome.bean.domain.base.IHomeBaseDO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -13,14 +14,10 @@ import java.util.Date;
  * @since 2024 /04/18
  */
 @Data
-public class UserLoginDO implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class UserLoginDO extends IHomeBaseDO {
 
     private static final long serialVersionUID = 1L;
-    /**
-     * 主键id
-     */
-    private Long id;
-
     /**
      * 用户名
      */
@@ -70,24 +67,4 @@ public class UserLoginDO implements Serializable {
      * 密码最后更新时间
      */
     private Date pwdUpdateDate;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 更新者
-     */
-    private String updateBy;
 }
