@@ -2,13 +2,28 @@ server:
   port: 80
   servlet:
     context-path: /i-home
+    # session持久化关闭
+    session:
+      persistent: false
 # spring配置
 spring:
   application:
     name: i-Home-app
+  # 国际化配置
+  messages:
+    basename: i18n/messages
   profiles:
     # 数据源配置
     active: druid
+# jwt配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 30
+
 # 自定义配置
 i-home:
   # 线程池配置

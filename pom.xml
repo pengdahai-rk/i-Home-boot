@@ -23,6 +23,7 @@
         <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
         <alibaba.ttl.version>2.14.4</alibaba.ttl.version>
         <alibaba.druid.stater.version>1.2.22</alibaba.druid.stater.version>
+        <auth.jwt.version>4.4.0</auth.jwt.version>
     </properties>
 
     <dependencies>
@@ -44,6 +45,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${auth.jwt.version}</version>
         </dependency>
 
         <dependency>
