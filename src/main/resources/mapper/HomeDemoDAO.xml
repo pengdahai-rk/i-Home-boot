@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="club.snow.ihome.dao.HomeDemoDao">
-    <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.HomeDemoDO">
+<mapper namespace="club.snow.ihome.dao.HomeDemoDAO">
+    <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.entity.HomeDemoDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="demo_name" jdbcType="VARCHAR" property="demoName"/>
         <result column="demo_decimal" jdbcType="DECIMAL" property="demoDecimal"/>
@@ -12,7 +12,7 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="club.snow.ihome.bean.domain.HomeDemoDO">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="club.snow.ihome.bean.domain.entity.HomeDemoDO">
         <result column="demo_blob" jdbcType="BLOB" property="demoBlob"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -35,7 +35,7 @@
         from home_demo
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.HomeDemoDO" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.HomeDemoDO" useGeneratedKeys="true">
         insert into home_demo (demo_name, demo_decimal, demo_text,
                                demo_status, create_time, create_by,
                                update_time, update_by, demo_blob)
@@ -43,7 +43,7 @@
                 #{demoStatus,jdbcType=BOOLEAN}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
                 #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{demoBlob,jdbcType=BLOB})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.HomeDemoDO" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.HomeDemoDO" useGeneratedKeys="true">
         insert into home_demo
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="demoName != null">
@@ -104,7 +104,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+    <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.entity.HomeDemoDO">
         update home_demo
         <set>
             <if test="demoName != null">
@@ -137,7 +137,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="club.snow.ihome.bean.domain.entity.HomeDemoDO">
         update home_demo
         set demo_name    = #{demoName,jdbcType=VARCHAR},
             demo_decimal = #{demoDecimal,jdbcType=DECIMAL},
@@ -150,7 +150,7 @@
             demo_blob    = #{demoBlob,jdbcType=BLOB}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.HomeDemoDO">
+    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.entity.HomeDemoDO">
         update home_demo
         set demo_name    = #{demoName,jdbcType=VARCHAR},
             demo_decimal = #{demoDecimal,jdbcType=DECIMAL},

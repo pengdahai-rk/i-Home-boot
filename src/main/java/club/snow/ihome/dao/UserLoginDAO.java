@@ -1,6 +1,7 @@
 package club.snow.ihome.dao;
 
-import club.snow.ihome.bean.domain.UserLoginDO;
+import club.snow.ihome.bean.domain.entity.UserLoginDO;
+import org.springframework.stereotype.Repository;
 
 /**
  * The interface User login dao.
@@ -8,6 +9,7 @@ import club.snow.ihome.bean.domain.UserLoginDO;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @since 2024 /04/18
  */
+@Repository
 public interface UserLoginDAO {
 
     /**

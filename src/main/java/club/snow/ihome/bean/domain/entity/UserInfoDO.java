@@ -1,6 +1,6 @@
-package club.snow.ihome.bean.domain;
+package club.snow.ihome.bean.domain.entity;
 
-import club.snow.ihome.bean.domain.base.IHomeBaseDO;
+import club.snow.ihome.bean.domain.IHomeBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

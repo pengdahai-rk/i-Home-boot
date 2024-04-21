@@ -1,6 +1,7 @@
 package club.snow.ihome.dao;
 
-import club.snow.ihome.bean.domain.HomeDemoDO;
+import club.snow.ihome.bean.domain.entity.HomeDemoDO;
+import org.springframework.stereotype.Repository;
 
 /**
  * The interface Home demo dao.
@@ -8,7 +9,8 @@ import club.snow.ihome.bean.domain.HomeDemoDO;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @since 2024 /04/19
  */
-public interface HomeDemoDao {
+@Repository
+public interface HomeDemoDAO {
     /**
      * Delete by primary key int.
      *

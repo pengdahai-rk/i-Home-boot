@@ -1,4 +1,4 @@
-package club.snow.ihome.bean.domain.base;
+package club.snow.ihome.bean.domain;
 
 import lombok.Data;
 

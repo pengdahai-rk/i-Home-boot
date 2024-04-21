@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="club.snow.ihome.dao.UserLoginDAO">
-    <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.UserLoginDO">
+    <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.entity.UserLoginDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
@@ -33,7 +33,7 @@
         from user_login
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.UserLoginDO" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
         insert into user_login (user_name, is_active, user_type,
                                 `password`, phone, email,
                                 salt, login_date, login_ip,
@@ -45,7 +45,7 @@
                 #{pwdUpdateDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
                 #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.UserLoginDO" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
         insert into user_login
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userName != null">
@@ -136,7 +136,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.UserLoginDO">
+    <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO">
         update user_login
         <set>
             <if test="userName != null">
@@ -184,7 +184,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.UserLoginDO">
+    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO">
         update user_login
         set user_name       = #{userName,jdbcType=VARCHAR},
             is_active       = #{isActive,jdbcType=BOOLEAN},

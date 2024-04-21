@@ -1,10 +1,15 @@
 package club.snow.ihome.dao;
 
-import club.snow.ihome.bean.domain.UserInfoDO;
+import club.snow.ihome.bean.domain.entity.UserInfoDO;
+import org.springframework.stereotype.Repository;
 
 /**
  * The interface User info dao.
+ *
+ * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
+ * @since 2024 /04/21
  */
+@Repository
 public interface UserInfoDAO {
     /**
      * Delete by primary key int.
