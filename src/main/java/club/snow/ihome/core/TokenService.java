@@ -1,7 +1,19 @@
 package club.snow.ihome.core;
 
+import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.common.constants.CommonConstants;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The type TokenService.
@@ -15,18 +27,53 @@ public class TokenService {
     @Value("${token.header}")
     private String header;
 
-    @Value("${token.secret}")
-    private String secret;
-
     @Value("${token.expireTime:30}")
-    private int expireTime;
+    private int expireTime; // 分钟
 
-    protected static final long MILLIS_SECOND = 1000;
-
-    protected static final long MILLIS_MINUTE = 60 * MILLIS_SECOND;
-
-    private static final Long MILLIS_MINUTE_TEN = 20 * 60 * 1000L;
+    private static final String SECRET = "";
+    private static final SecretKey key = Jwts.SIG.HS256.key().random(new SecureRandom(SECRET.getBytes(StandardCharsets.UTF_8))).build();
 
 
+    public Map<String, Object> createToken(UserLoginDTO userLoginDTO) {
+        String token = "";
+        Long userId = userLoginDTO.getUserId();
+        String userName = userLoginDTO.getUserName();
+        userLoginDTO.setToken(token);
+        // Jwt存储信息
+        Map<String, Object> claimsMap = new HashMap<>();
+        claimsMap.put(CommonConstants.USER_KEY, token);
+        claimsMap.put(CommonConstants.DETAILS_USER_ID, userId);
+        claimsMap.put(CommonConstants.DETAILS_USER_NAME, userName);
+        // 接口返回信息
+        Map<String, Object> rspMap = new HashMap<>();
+        rspMap.put("access_token", createToken(claimsMap));
+        rspMap.put("expires_in", expireTime);
+        return rspMap;
+    }
 
+    /**
+     * 从数据声明生成令牌
+     *
+     * @param claims 数据声明
+     * @return 令牌
+     */
+    private String createToken(Map<String, Object> claims) {
+        Date now = new Date();
+        long expireTimeMillis = expireTime * 60 * 1000L;
+        JwtBuilder jwtBuilder = Jwts.builder()
+                .id("123123") // id
+                .issuer("snow") // 签发者
+                .claims(claims) // 加密数据
+                .subject("snow subject") // 主题
+                .issuedAt(now) // 签发时间
+                .expiration(new Date(now.getTime() + expireTimeMillis)) // 过期日期
+                .signWith(key);// 签名
+        jwtBuilder.header().add("JWT", "i-Home/snow");
+        return jwtBuilder.compact();
+    }
+
+    private Claims parseToken(String token) {
+
+        return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
+    }
 }

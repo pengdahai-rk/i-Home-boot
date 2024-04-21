@@ -17,4 +17,14 @@ public class CommonConstants {
      */
     public static final String DETAILS_USER_ID = "user_id";
 
+    /**
+     * 用户名称字段
+     */
+    public static final String DETAILS_USER_NAME = "user_name";
+
+    /**
+     * 令牌前缀
+     */
+    public static final String TOKEN_PREFIX = "Bearer ";
+
 }

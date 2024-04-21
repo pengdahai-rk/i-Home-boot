@@ -1,7 +1,7 @@
 package club.snow.ihome.service;
 
-import club.snow.ihome.bean.LoginUser;
-import club.snow.ihome.bean.req.LoginReq;
+import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.bean.req.SignInReq;
 
 /**
  * The type LoginUserService.
@@ -12,10 +12,10 @@ import club.snow.ihome.bean.req.LoginReq;
 public interface LoginUserService {
 
     /**
-     * Login login user.
+     * Sign in login user.
      *
-     * @param loginReq the login req
+     * @param signInReq the sign in req
      * @return the login user
      */
-    LoginUser login(LoginReq loginReq);
+    UserLoginDTO signIn(SignInReq signInReq);
 }

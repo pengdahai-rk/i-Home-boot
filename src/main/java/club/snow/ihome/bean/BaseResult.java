@@ -33,6 +33,10 @@ public class BaseResult<T> implements Serializable {
         return restResult(SUCCESS, "操作成功", null);
     }
 
+    public static <T> BaseResult<T> ok(T data) {
+        return restResult(SUCCESS, "操作成功", data);
+    }
+
     public static <T> BaseResult<T> ok(String msg, T data) {
         return restResult(SUCCESS, msg, data);
     }

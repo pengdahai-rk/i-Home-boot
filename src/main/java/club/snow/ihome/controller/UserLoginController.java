@@ -1,8 +1,9 @@
 package club.snow.ihome.controller;
 
 import club.snow.ihome.bean.BaseResult;
-import club.snow.ihome.bean.LoginUser;
-import club.snow.ihome.bean.req.LoginReq;
+import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.bean.req.SignInReq;
+import club.snow.ihome.core.TokenService;
 import club.snow.ihome.service.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,20 +23,24 @@ public class UserLoginController {
 
     @Autowired
     private LoginUserService loginUserService;
+    @Autowired
+    private TokenService tokenService;
 
-    @PostMapping("/login")
-    public BaseResult<Map<String, Object>> login(@RequestBody LoginReq loginReq) {
-        LoginUser loginUser = loginUserService.login(loginReq);
-        return BaseResult.ok();
+
+    @PostMapping("/sign-in")
+    public BaseResult<Map<String, Object>> signIn(@RequestBody SignInReq signInReq) {
+
+        UserLoginDTO userLoginDTO = loginUserService.signIn(signInReq);
+        return BaseResult.ok(tokenService.createToken(userLoginDTO));
     }
 
-    @PostMapping("/sign")
-    public void sign() {
+    @PostMapping("/sign-up")
+    public void singUp() {
 
     }
 
-    @PostMapping("/login-out")
-    public void loginOut() {
+    @PostMapping("/sign-out")
+    public void singOut() {
 
     }
 }

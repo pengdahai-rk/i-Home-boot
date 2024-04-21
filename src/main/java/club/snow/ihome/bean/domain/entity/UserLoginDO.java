@@ -56,12 +56,12 @@ public class UserLoginDO extends IHomeBaseDO {
     /**
      * 最近登录时间
      */
-    private Date loginDate;
+    private Date signInDate;
 
     /**
      * 最后登录IP
      */
-    private String loginIp;
+    private String signInIp;
 
     /**
      * 密码最后更新时间

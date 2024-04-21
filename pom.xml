@@ -24,6 +24,7 @@
         <alibaba.ttl.version>2.14.4</alibaba.ttl.version>
         <alibaba.druid.stater.version>1.2.22</alibaba.druid.stater.version>
         <auth.jwt.version>4.4.0</auth.jwt.version>
+        <auth.jjwt.version>0.12.5</auth.jjwt.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,13 @@
             <artifactId>java-jwt</artifactId>
             <version>${auth.jwt.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${auth.jjwt.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.mysql</groupId>

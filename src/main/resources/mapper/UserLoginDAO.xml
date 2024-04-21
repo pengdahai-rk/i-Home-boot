@@ -10,8 +10,8 @@
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="salt" jdbcType="CHAR" property="salt"/>
-        <result column="login_date" jdbcType="TIMESTAMP" property="loginDate"/>
-        <result column="login_ip" jdbcType="VARCHAR" property="loginIp"/>
+        <result column="sign_in_date" jdbcType="TIMESTAMP" property="signInDate"/>
+        <result column="sign_in_ip" jdbcType="VARCHAR" property="signInIp"/>
         <result column="pwd_update_date" jdbcType="TIMESTAMP" property="pwdUpdateDate"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
@@ -19,8 +19,8 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_name, is_active, user_type, `password`, phone, email, salt, login_date,
-    login_ip, pwd_update_date, create_time, create_by, update_time, update_by
+        id, user_name, is_active, user_type, `password`, phone, email, salt, sign_in_date,
+    sign_in_ip, pwd_update_date, create_time, create_by, update_time, update_by
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -36,7 +36,7 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
         insert into user_login (user_name, is_active, user_type,
                                 `password`, phone, email,
-                                salt, login_date, login_ip,
+                                salt, sign_in_date, sign_in_ip,
                                 pwd_update_date, create_time, create_by,
                                 update_time, update_by)
         values (#{userName,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}, #{userType,jdbcType=VARCHAR},
@@ -70,10 +70,10 @@
                 salt,
             </if>
             <if test="loginDate != null">
-                login_date,
+                sign_in_date,
             </if>
             <if test="loginIp != null">
-                login_ip,
+                sign_in_ip,
             </if>
             <if test="pwdUpdateDate != null">
                 pwd_update_date,
@@ -161,10 +161,10 @@
                 salt = #{salt,jdbcType=CHAR},
             </if>
             <if test="loginDate != null">
-                login_date = #{loginDate,jdbcType=TIMESTAMP},
+                sign_in_date = #{loginDate,jdbcType=TIMESTAMP},
             </if>
             <if test="loginIp != null">
-                login_ip = #{loginIp,jdbcType=VARCHAR},
+                sign_in_ip = #{loginIp,jdbcType=VARCHAR},
             </if>
             <if test="pwdUpdateDate != null">
                 pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
@@ -193,8 +193,8 @@
             phone           = #{phone,jdbcType=VARCHAR},
             email           = #{email,jdbcType=VARCHAR},
             salt            = #{salt,jdbcType=CHAR},
-            login_date      = #{loginDate,jdbcType=TIMESTAMP},
-            login_ip        = #{loginIp,jdbcType=VARCHAR},
+            sign_in_date      = #{loginDate,jdbcType=TIMESTAMP},
+            sign_in_ip        = #{loginIp,jdbcType=VARCHAR},
             pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
             create_time     = #{createTime,jdbcType=TIMESTAMP},
             create_by       = #{createBy,jdbcType=VARCHAR},
