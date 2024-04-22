@@ -1,7 +1,7 @@
 package club.snow.ihome.controller;
 
 import club.snow.ihome.bean.BaseResult;
-import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
 import club.snow.ihome.core.TokenService;
 import club.snow.ihome.service.LoginUserService;

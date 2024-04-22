@@ -1,7 +1,8 @@
 package club.snow.ihome.core;
 
-import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.common.constants.CommonConstants;
+import club.snow.ihome.common.utils.IdUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -30,12 +31,17 @@ public class TokenService {
     @Value("${token.expireTime:30}")
     private int expireTime; // 分钟
 
-    private static final String SECRET = "";
+    private static final String SECRET = "abcdefghijklmnopqrstuvwxyz1234567890";
     private static final SecretKey key = Jwts.SIG.HS256.key().random(new SecureRandom(SECRET.getBytes(StandardCharsets.UTF_8))).build();
 
-
+    /**
+     * Create token map.
+     *
+     * @param userLoginDTO the user login dto
+     * @return the map
+     */
     public Map<String, Object> createToken(UserLoginDTO userLoginDTO) {
-        String token = "";
+        String token = IdUtil.randomUUID();
         Long userId = userLoginDTO.getUserId();
         String userName = userLoginDTO.getUserName();
         userLoginDTO.setToken(token);
@@ -51,13 +57,9 @@ public class TokenService {
         return rspMap;
     }
 
-    /**
-     * 从数据声明生成令牌
-     *
-     * @param claims 数据声明
-     * @return 令牌
-     */
+    // 创建token
     private String createToken(Map<String, Object> claims) {
+
         Date now = new Date();
         long expireTimeMillis = expireTime * 60 * 1000L;
         JwtBuilder jwtBuilder = Jwts.builder()
@@ -72,6 +74,7 @@ public class TokenService {
         return jwtBuilder.compact();
     }
 
+    // 解析token
     private Claims parseToken(String token) {
 
         return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();

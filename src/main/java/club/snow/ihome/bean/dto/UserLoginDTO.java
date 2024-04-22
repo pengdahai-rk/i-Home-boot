@@ -1,4 +1,4 @@
-package club.snow.ihome.bean;
+package club.snow.ihome.bean.dto;
 
 import lombok.Data;
 
