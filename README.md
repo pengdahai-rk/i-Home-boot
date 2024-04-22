@@ -1,3 +1,3 @@
-# i-Home
+# i-Home app
 
 
