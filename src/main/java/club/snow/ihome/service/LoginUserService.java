@@ -1,6 +1,6 @@
 package club.snow.ihome.service;
 
-import club.snow.ihome.bean.UserLoginDTO;
+import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
 
 /**
