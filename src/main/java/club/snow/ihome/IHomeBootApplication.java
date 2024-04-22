@@ -14,7 +14,7 @@ public class IHomeBootApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(IHomeBootApplication.class, args);
         ConfigurableEnvironment environment = run.getEnvironment();
-        log.info("i-Home start success! ", environment.getConversionService());
+        log.info("i-Home start success! {}", environment.getConversionService());
     }
 
 }
