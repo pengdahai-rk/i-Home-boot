@@ -2,6 +2,7 @@ package club.snow.ihome.service.impl;
 
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
+import club.snow.ihome.bean.req.SignUpReq;
 import club.snow.ihome.dao.UserLoginDAO;
 import club.snow.ihome.service.LoginUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,12 @@ public class LoginUserServiceImpl implements LoginUserService {
 
     @Override
     public UserLoginDTO signIn(SignInReq signInReq) {
+
+        return null;
+    }
+
+    @Override
+    public Boolean singUp(SignUpReq signUpReq) {
 
         return null;
     }

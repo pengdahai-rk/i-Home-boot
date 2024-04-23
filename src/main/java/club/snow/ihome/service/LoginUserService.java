@@ -2,6 +2,7 @@ package club.snow.ihome.service;
 
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
+import club.snow.ihome.bean.req.SignUpReq;
 
 /**
  * The type LoginUserService.
@@ -18,4 +19,12 @@ public interface LoginUserService {
      * @return the login user
      */
     UserLoginDTO signIn(SignInReq signInReq);
+
+    /**
+     * Sing up boolean.
+     *
+     * @param signUpReq the sign up req
+     * @return the boolean
+     */
+    Boolean singUp(SignUpReq signUpReq);
 }
