@@ -3,7 +3,8 @@ package club.snow.ihome.controller;
 import club.snow.ihome.bean.BaseResult;
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
-import club.snow.ihome.core.TokenService;
+import club.snow.ihome.bean.req.SignUpReq;
+import club.snow.ihome.service.TokenService;
 import club.snow.ihome.service.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +36,14 @@ public class UserLoginController {
     }
 
     @PostMapping("/sign-up")
-    public void singUp() {
+    public BaseResult<Boolean> singUp(@RequestBody SignUpReq signUpReq) {
 
+        return BaseResult.ok(loginUserService.singUp(signUpReq));
     }
 
     @PostMapping("/sign-out")
-    public void singOut() {
+    public BaseResult<Boolean> singOut() {
 
+        return BaseResult.ok(tokenService.singOut());
     }
 }

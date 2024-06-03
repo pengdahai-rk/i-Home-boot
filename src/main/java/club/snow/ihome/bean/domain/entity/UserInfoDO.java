@@ -31,7 +31,7 @@ public class UserInfoDO extends IHomeBaseDO {
     /**
      * 是否注销 0保密 1男 2女 3其它
      */
-    private Boolean gender;
+    private Integer gender;
 
     /**
      * 生日

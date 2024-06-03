@@ -1,4 +1,4 @@
-package club.snow.ihome.core;
+package club.snow.ihome.service;
 
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.common.constants.CommonConstants;
@@ -55,6 +55,16 @@ public class TokenService {
         rspMap.put("access_token", createToken(claimsMap));
         rspMap.put("expires_in", expireTime);
         return rspMap;
+    }
+
+    /**
+     * Sing out boolean.
+     *
+     * @return the boolean
+     */
+    public Boolean singOut() {
+
+        return Boolean.TRUE;
     }
 
     // 创建token
