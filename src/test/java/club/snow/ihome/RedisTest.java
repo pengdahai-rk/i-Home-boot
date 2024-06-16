@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
  * The type RedisTest.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/6/13
+ * @date 2024.6.13
  */
 @SpringBootTest
 public class RedisTest {

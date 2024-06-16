@@ -4,7 +4,7 @@ package club.snow.ihome.core;
  * The type Snow flake.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024 /04/18
+ * @date 2024 /04/18
  */
 public class SnowFlake {
 

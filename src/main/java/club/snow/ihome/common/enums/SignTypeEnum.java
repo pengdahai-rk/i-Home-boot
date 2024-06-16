@@ -4,7 +4,7 @@ package club.snow.ihome.common.enums;
  * The type SignTypeEnum.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/22
+ * @date 2024.4.22
  */
 public enum SignTypeEnum {
 

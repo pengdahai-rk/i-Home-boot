@@ -7,7 +7,7 @@ import lombok.Data;
  * The type Sign up req.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024 /04/23
+ * @date 2024 /04/23
  */
 @Data
 public class SignUpReq {

@@ -1,10 +1,10 @@
 package club.snow.ihome.service;
 
 /**
- * The type IHomeDemoService.
+ * The interface Home demo service.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/18
+ * @date 2024.06.16
  */
 public interface IHomeDemoService {
 

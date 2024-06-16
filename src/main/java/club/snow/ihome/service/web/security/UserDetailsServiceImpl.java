@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * The type UserDetailsServiceImpl.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/6/12
+ * @date 2024.6.12
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

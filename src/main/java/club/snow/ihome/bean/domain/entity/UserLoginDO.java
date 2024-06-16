@@ -11,7 +11,7 @@ import java.util.Date;
  * The type User login do.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024 /04/18
+ * @date 2024 /04/18
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

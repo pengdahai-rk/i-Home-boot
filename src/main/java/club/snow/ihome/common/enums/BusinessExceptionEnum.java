@@ -4,7 +4,7 @@ package club.snow.ihome.common.enums;
  * The type BusinessExceptionEnum.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/21
+ * @date 2024.4.21
  */
 public enum BusinessExceptionEnum {
     SUCCESS(1000000, "成功"),

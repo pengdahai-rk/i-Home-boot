@@ -17,10 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The type TokenService.
+ * The type Token service.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/20
+ * @date 2024.06.16
  */
 @Component
 public class TokenService {
@@ -58,9 +58,10 @@ public class TokenService {
     }
 
     /**
-     * Sing out boolean.
+     * singOut
      *
-     * @return the boolean
+     * @return {@link Boolean }
+     * @see Boolean
      */
     public Boolean singOut() {
 
