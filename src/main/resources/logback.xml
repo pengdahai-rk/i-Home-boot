@@ -5,6 +5,9 @@
     <!-- 日志输出格式 -->
     <property name="log.pattern"
               value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{20} -  %boldMagenta([%method,%line]) - %cyan(%msg%n)"/>
+    <!-- 文件日志输出格式 -->
+    <property name="file.log.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
 
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -24,7 +27,7 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${file.log.pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <!-- 过滤的级别 -->
@@ -46,7 +49,7 @@
             <maxHistory>60</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${file.log.pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <!-- 过滤的级别 -->
@@ -68,7 +71,7 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${file.log.pattern}</pattern>
         </encoder>
     </appender>
 

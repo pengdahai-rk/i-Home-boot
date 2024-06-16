@@ -13,8 +13,8 @@ spring:
   messages:
     basename: i18n/messages
   profiles:
-    # 数据源配置
-    active: druid
+    # MySQL数据源配置
+    active: druid,redisson
 # jwt配置
 token:
   # 令牌自定义标识

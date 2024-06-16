@@ -43,7 +43,7 @@ public class TokenService {
     public Map<String, Object> createToken(UserLoginDTO userLoginDTO) {
         String token = IdUtil.randomUUID();
         Long userId = userLoginDTO.getUserId();
-        String userName = userLoginDTO.getUserName();
+        String userName = userLoginDTO.getUsername();
         userLoginDTO.setToken(token);
         // Jwt存储信息
         Map<String, Object> claimsMap = new HashMap<>();

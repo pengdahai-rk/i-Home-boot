@@ -5,7 +5,7 @@ import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
 import club.snow.ihome.bean.req.SignUpReq;
 import club.snow.ihome.service.TokenService;
-import club.snow.ihome.service.LoginUserService;
+import club.snow.ihome.service.web.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +19,12 @@ import java.util.Map;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @since 2024/4/21
  */
-@RestController
-public class UserLoginController {
+@RestController("/user")
+public class UserController {
 
     @Autowired
-    private LoginUserService loginUserService;
+    private LoginService loginService;
+
     @Autowired
     private TokenService tokenService;
 
@@ -31,14 +32,14 @@ public class UserLoginController {
     @PostMapping("/sign-in")
     public BaseResult<Map<String, Object>> signIn(@RequestBody SignInReq signInReq) {
 
-        UserLoginDTO userLoginDTO = loginUserService.signIn(signInReq);
+        UserLoginDTO userLoginDTO = null;
         return BaseResult.ok(tokenService.createToken(userLoginDTO));
     }
 
     @PostMapping("/sign-up")
     public BaseResult<Boolean> singUp(@RequestBody SignUpReq signUpReq) {
 
-        return BaseResult.ok(loginUserService.singUp(signUpReq));
+        return BaseResult.ok();
     }
 
     @PostMapping("/sign-out")

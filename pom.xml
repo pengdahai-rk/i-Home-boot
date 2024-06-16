@@ -17,7 +17,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <mybatis.boot.version>2.2.2</mybatis.boot.version>
+        <mybatis.boot.version>3.0.3</mybatis.boot.version>
         <google.guava.version>33.1.0-jre</google.guava.version>
         <apache.lang3.version>3.14.0</apache.lang3.version>
         <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
@@ -25,6 +25,7 @@
         <alibaba.druid.stater.version>1.2.22</alibaba.druid.stater.version>
         <auth.jwt.version>4.4.0</auth.jwt.version>
         <auth.jjwt.version>0.12.5</auth.jjwt.version>
+        <redisson.version>3.31.0</redisson.version>
     </properties>
 
     <dependencies>
@@ -66,6 +67,12 @@
             <version>${auth.jjwt.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.mysql</groupId>

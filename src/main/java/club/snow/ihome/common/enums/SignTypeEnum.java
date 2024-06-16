@@ -27,4 +27,13 @@ public enum SignTypeEnum {
     public String getInfo() {
         return info;
     }
+
+    public static String getInfo(String code) {
+        for (SignTypeEnum signTypeEnum : SignTypeEnum.values()) {
+            if (signTypeEnum.getCode().equals(code)) {
+                return signTypeEnum.getInfo();
+            }
+        }
+        return null;
+    }
 }
