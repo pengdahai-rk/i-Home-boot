@@ -4,6 +4,7 @@ import club.snow.ihome.bean.domain.IHomeBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.util.Date;
 
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class UserLoginDO extends IHomeBaseDO {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     /**
      * 用户名

@@ -4,6 +4,7 @@ import club.snow.ihome.bean.domain.entity.UserLoginDO;
 import club.snow.ihome.dao.UserLoginDAO;
 import club.snow.ihome.service.LoginUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,17 @@ public class LoginUserServiceImpl implements LoginUserService {
 
     @Override
     public UserLoginDO getByUsername(String username) {
-        return null;
+        if (StringUtils.isBlank(username)) {
+            return null;
+        }
+        return userLoginDAO.getByUsername(username);
+    }
+
+    @Override
+    public UserLoginDO getByEmail(String email) {
+        if (StringUtils.isBlank(email)) {
+            return null;
+        }
+        return userLoginDAO.getByEmail(email);
     }
 }

@@ -9,6 +9,7 @@ import club.snow.ihome.service.web.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -19,7 +20,8 @@ import java.util.Map;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @date 2024.4.21
  */
-@RestController("/user")
+@RestController()
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -27,12 +29,10 @@ public class UserController {
 
     @Autowired
     private TokenService tokenService;
-
-
+    
     @PostMapping("/sign-in")
     public BaseResult<Map<String, Object>> signIn(@RequestBody SignInReq signInReq) {
-
-        UserLoginDTO userLoginDTO = null;
+        UserLoginDTO userLoginDTO = loginService.signIn(signInReq);
         return BaseResult.ok(tokenService.createToken(userLoginDTO));
     }
 

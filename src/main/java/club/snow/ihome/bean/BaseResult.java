@@ -1,8 +1,7 @@
 package club.snow.ihome.bean;
 
-import club.snow.ihome.common.enums.BusinessExceptionEnum;
-
-import java.io.Serializable;
+import club.snow.ihome.common.enums.BusinessInfoEnum;
+import lombok.Data;
 
 /**
  * The type BaseResult.
@@ -10,9 +9,8 @@ import java.io.Serializable;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @date 2024.4.21
  */
-public class BaseResult<T> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Data
+public class BaseResult<T> {
 
     private static final Integer SUCCESS;
 
@@ -25,8 +23,8 @@ public class BaseResult<T> implements Serializable {
     private T data;
 
     static {
-        SUCCESS = BusinessExceptionEnum.SUCCESS.getCode();
-        FAIL = BusinessExceptionEnum.FAIL.getCode();
+        SUCCESS = BusinessInfoEnum.SUCCESS.getCode();
+        FAIL = BusinessInfoEnum.FAIL.getCode();
     }
 
     public static <T> BaseResult<T> ok() {
@@ -45,6 +43,14 @@ public class BaseResult<T> implements Serializable {
         return restResult(FAIL, "操作失败", null);
     }
 
+    public static <T> BaseResult<T> fail(String msg) {
+        return restResult(FAIL, msg, null);
+    }
+
+    public static <T> BaseResult<T> fail(Integer code, String msg) {
+        return restResult(code, msg, null);
+    }
+
     public static <T> BaseResult<T> fail(String msg, T data) {
         return restResult(FAIL, msg, data);
     }
@@ -55,29 +61,5 @@ public class BaseResult<T> implements Serializable {
         apiResult.setData(data);
         apiResult.setMsg(msg);
         return apiResult;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }

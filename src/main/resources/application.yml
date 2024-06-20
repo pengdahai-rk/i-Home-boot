@@ -12,9 +12,12 @@ spring:
   # 国际化配置
   messages:
     basename: i18n/messages
+    fallback-to-system-locale: false
   profiles:
     # MySQL数据源配置
     active: druid,redisson
+  security:
+
 # jwt配置
 token:
   # 令牌自定义标识
@@ -42,7 +45,7 @@ mybatis:
   # 搜索指定包别名
   typeAliasesPackage: club.ihome.**.domain
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  mapperLocations: classpath*:mapper/**/*DAO.xml
   # 加载全局的配置文件
   configLocation: classpath:mybatis/mybatis-config.xml
 

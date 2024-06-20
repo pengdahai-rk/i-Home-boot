@@ -1,6 +1,7 @@
 package club.snow.ihome.dao;
 
 import club.snow.ihome.bean.domain.entity.UserLoginDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -59,4 +60,20 @@ public interface UserLoginDAO {
      * @return the int
      */
     int updateByPrimaryKey(UserLoginDO record);
+    
+    /**
+     * Gets by username.
+     *
+     * @param username the username
+     * @return the by username
+     */
+    UserLoginDO getByUsername(@Param("username") String username);
+
+    /**
+     * Gets by email.
+     *
+     * @param email the email
+     * @return the by email
+     */
+    UserLoginDO getByEmail(@Param("email") String email);
 }

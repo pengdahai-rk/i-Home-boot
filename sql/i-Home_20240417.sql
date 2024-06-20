@@ -67,3 +67,7 @@ CREATE TABLE `user_login`
   COLLATE = utf8mb4_general_ci COMMENT = '用户登录信息表'
   ROW_FORMAT = Dynamic;
 
+INSERT INTO `i-home`.`user_login`(`id`, `user_name`, `is_active`, `user_type`, `password`, `phone`, `email`, `salt`, `sign_in_date`, `sign_in_ip`, `pwd_update_date`, `create_time`, `create_by`, `update_time`, `update_by`)
+VALUES (1, 'p7i', 0, '00', '123456', '18702715850', 'pengdahai216@126.com', '123456', '2024-06-19 17:33:17', '', NULL, '2024-06-19 17:33:17', '', '2024-06-19 17:34:24', '');
+INSERT INTO `i-home`.`user_login`(`id`, `user_name`, `is_active`, `user_type`, `password`, `phone`, `email`, `salt`, `sign_in_date`, `sign_in_ip`, `pwd_update_date`, `create_time`, `create_by`, `update_time`, `update_by`)
+VALUES (2, 'l7e', 0, '00', '654321', '18702715850', 'pengdahai216@163.com', '654321', '2024-06-19 17:33:17', '', NULL, '2024-06-19 17:33:17', '', '2024-06-19 17:34:24', '');

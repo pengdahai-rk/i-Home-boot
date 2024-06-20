@@ -4,6 +4,7 @@ import club.snow.ihome.bean.domain.IHomeBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 /**
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class HomeDemoDO extends IHomeBaseDO {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     /**
      * demo名称

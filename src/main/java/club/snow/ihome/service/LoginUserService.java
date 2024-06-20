@@ -17,4 +17,12 @@ public interface LoginUserService {
      * @return the by username
      */
     UserLoginDO getByUsername(String username);
+
+    /**
+     * Gets by email.
+     *
+     * @param email the email
+     * @return the by email
+     */
+    UserLoginDO getByEmail(String email);
 }

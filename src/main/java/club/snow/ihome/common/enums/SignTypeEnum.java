@@ -8,19 +8,19 @@ package club.snow.ihome.common.enums;
  */
 public enum SignTypeEnum {
 
-    OK("0", "用户名"),
+    USERNAME(0, "用户名"),
 
-    DISABLE("1", "邮箱");
+    EMAIL(1, "邮箱");
 
-    private final String code;
+    private final Integer code;
     private final String info;
 
-    SignTypeEnum(String code, String info) {
+    SignTypeEnum(Integer code, String info) {
         this.code = code;
         this.info = info;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
@@ -28,7 +28,7 @@ public enum SignTypeEnum {
         return info;
     }
 
-    public static String getInfo(String code) {
+    public static String getInfo(Integer code) {
         for (SignTypeEnum signTypeEnum : SignTypeEnum.values()) {
             if (signTypeEnum.getCode().equals(code)) {
                 return signTypeEnum.getInfo();
