@@ -1,11 +1,14 @@
 package club.snow.ihome.common.enums;
 
+import lombok.Getter;
+
 /**
  * The type SignTypeEnum.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @date 2024.4.22
  */
+@Getter
 public enum SignTypeEnum {
 
     USERNAME(0, "用户名"),
@@ -13,27 +16,20 @@ public enum SignTypeEnum {
     EMAIL(1, "邮箱");
 
     private final Integer code;
-    private final String info;
 
-    SignTypeEnum(Integer code, String info) {
+    private final String type;
+
+    SignTypeEnum(Integer code, String type) {
         this.code = code;
-        this.info = info;
+        this.type = type;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public static String getInfo(Integer code) {
+    public static String getByCode(Integer code) {
         for (SignTypeEnum signTypeEnum : SignTypeEnum.values()) {
             if (signTypeEnum.getCode().equals(code)) {
-                return signTypeEnum.getInfo();
+                return signTypeEnum.getType();
             }
         }
-        return null;
+        return "";
     }
 }

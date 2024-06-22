@@ -4,6 +4,8 @@ import club.snow.ihome.common.enums.BusinessInfoEnum;
 import lombok.Getter;
 
 import java.io.Serial;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Business exception.
@@ -27,9 +29,20 @@ public class BusinessException extends RuntimeException {
      */
     private final String message;
 
+    /**
+     * 错误替换
+     */
+    private final List<String> messageList = new ArrayList<>();
+
     public BusinessException(BusinessInfoEnum businessInfoEnum) {
         this.code = businessInfoEnum.getCode();
         this.message = businessInfoEnum.getMessage();
+    }
+
+    public BusinessException(BusinessInfoEnum businessInfoEnum, List<String> messageList) {
+        this.code = businessInfoEnum.getCode();
+        this.message = businessInfoEnum.getMessage();
+        this.messageList.addAll(messageList);
     }
 
     @Override
@@ -37,6 +50,7 @@ public class BusinessException extends RuntimeException {
         return "BusinessException{" +
                 "code=" + code +
                 ", message='" + message + '\'' +
+                ", messageList=" + messageList +
                 '}';
     }
 }

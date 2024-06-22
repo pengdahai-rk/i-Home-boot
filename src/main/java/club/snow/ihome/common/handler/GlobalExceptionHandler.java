@@ -20,21 +20,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     /**
-     * 拦截未知异常
-     *
-     * @param e       the e
-     * @param request the request
-     * @return the base result
-     */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(RuntimeException.class)
-    public BaseResult<Object> processException(RuntimeException e, HttpServletRequest request) {
-        String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生未知异常.", requestURI, e);
-        return BaseResult.fail("系统异常，请联系管理员！");
-    }
-
-    /**
      * 拦截业务异常
      *
      * @param e       the e
@@ -46,7 +31,36 @@ public class GlobalExceptionHandler {
     public BaseResult<Object> handleServiceException(BusinessException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',发生业务异常.", requestURI, e);
-        return BaseResult.fail(e.getCode(), e.getMessage());
+        return BaseResult.fail(e.getCode(), e.getMessage(), e.getMessageList().toArray());
     }
 
+    /**
+     * 拦截运行异常
+     *
+     * @param e       the e
+     * @param request the request
+     * @return the base result
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(RuntimeException.class)
+    public BaseResult<Object> processException(RuntimeException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生未知运行异常.", requestURI, e);
+        return BaseResult.fail("系统运行异常，请联系管理员！");
+    }
+
+    /**
+     * 拦截系统异常
+     *
+     * @param e       the e
+     * @param request the request
+     * @return the base result
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public BaseResult<Object> processException(Exception e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生未知系统异常.", requestURI, e);
+        return BaseResult.fail("系统异常，请联系管理员！");
+    }
 }

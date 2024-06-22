@@ -1,6 +1,7 @@
 package club.snow.ihome.bean;
 
 import club.snow.ihome.common.enums.BusinessInfoEnum;
+import club.snow.ihome.common.utils.LocaleUtil;
 import lombok.Data;
 
 /**
@@ -28,38 +29,30 @@ public class BaseResult<T> {
     }
 
     public static <T> BaseResult<T> ok() {
-        return restResult(SUCCESS, "操作成功", null);
+        return restResult(SUCCESS, BusinessInfoEnum.SUCCESS.getMessage(), null);
     }
 
     public static <T> BaseResult<T> ok(T data) {
-        return restResult(SUCCESS, "操作成功", data);
-    }
-
-    public static <T> BaseResult<T> ok(String msg, T data) {
-        return restResult(SUCCESS, msg, data);
+        return restResult(SUCCESS, BusinessInfoEnum.SUCCESS.getMessage(), data);
     }
 
     public static <T> BaseResult<T> fail() {
-        return restResult(FAIL, "操作失败", null);
+        return restResult(FAIL, BusinessInfoEnum.FAIL.getMessage(), null);
     }
 
     public static <T> BaseResult<T> fail(String msg) {
         return restResult(FAIL, msg, null);
     }
 
-    public static <T> BaseResult<T> fail(Integer code, String msg) {
-        return restResult(code, msg, null);
+    public static <T> BaseResult<T> fail(Integer code, String msg, Object... args) {
+        return restResult(code, msg, null, args);
     }
 
-    public static <T> BaseResult<T> fail(String msg, T data) {
-        return restResult(FAIL, msg, data);
-    }
-
-    private static <T> BaseResult<T> restResult(int code, String msg, T data) {
+    private static <T> BaseResult<T> restResult(int code, String msg, T data, Object... args) {
         BaseResult<T> apiResult = new BaseResult<>();
         apiResult.setCode(code);
+        apiResult.setMsg(LocaleUtil.get(msg, args));
         apiResult.setData(data);
-        apiResult.setMsg(msg);
         return apiResult;
     }
 }

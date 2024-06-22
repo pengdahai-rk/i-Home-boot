@@ -10,9 +10,10 @@ import lombok.Getter;
  */
 @Getter
 public enum BusinessInfoEnum {
-    
+
     SUCCESS(1000000, "success"),
     FAIL(1000001, "fail"),
+    DEMO_TEST_ERROR(2000000, "demo.test.error"),
     USER_SING_NOT_EXIST(2000001, "user.sign.not-exist"),
     ;
     private final int code;
