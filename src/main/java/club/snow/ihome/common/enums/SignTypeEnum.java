@@ -1,30 +1,35 @@
 package club.snow.ihome.common.enums;
 
+import lombok.Getter;
+
 /**
  * The type SignTypeEnum.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/22
+ * @date 2024.4.22
  */
+@Getter
 public enum SignTypeEnum {
 
-    OK("0", "用户名"),
+    USERNAME(0, "用户名"),
 
-    DISABLE("1", "邮箱");
+    EMAIL(1, "邮箱");
 
-    private final String code;
-    private final String info;
+    private final Integer code;
 
-    SignTypeEnum(String code, String info) {
+    private final String type;
+
+    SignTypeEnum(Integer code, String type) {
         this.code = code;
-        this.info = info;
+        this.type = type;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public String getInfo() {
-        return info;
+    public static String getByCode(Integer code) {
+        for (SignTypeEnum signTypeEnum : SignTypeEnum.values()) {
+            if (signTypeEnum.getCode().equals(code)) {
+                return signTypeEnum.getType();
+            }
+        }
+        return "";
     }
 }

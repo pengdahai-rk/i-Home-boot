@@ -19,8 +19,8 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_name, is_active, user_type, `password`, phone, email, salt, sign_in_date,
-    sign_in_ip, pwd_update_date, create_time, create_by, update_time, update_by
+        id
+        , user_name, is_active, user_type, `password`, phone, email, salt, sign_in_date,sign_in_ip, pwd_update_date,create_time, create_by, update_time, update_by
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -33,7 +33,8 @@
         from user_login
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO"
+            useGeneratedKeys="true">
         insert into user_login (user_name, is_active, user_type,
                                 `password`, phone, email,
                                 salt, sign_in_date, sign_in_ip,
@@ -45,7 +46,8 @@
                 #{pwdUpdateDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
                 #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
         insert into user_login
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userName != null">
@@ -193,8 +195,8 @@
             phone           = #{phone,jdbcType=VARCHAR},
             email           = #{email,jdbcType=VARCHAR},
             salt            = #{salt,jdbcType=CHAR},
-            sign_in_date      = #{loginDate,jdbcType=TIMESTAMP},
-            sign_in_ip        = #{loginIp,jdbcType=VARCHAR},
+            sign_in_date    = #{loginDate,jdbcType=TIMESTAMP},
+            sign_in_ip      = #{loginIp,jdbcType=VARCHAR},
             pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
             create_time     = #{createTime,jdbcType=TIMESTAMP},
             create_by       = #{createBy,jdbcType=VARCHAR},
@@ -202,4 +204,18 @@
             update_by       = #{updateBy,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="getByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_login
+        where user_name = #{username}
+    </select>
+
+    <select id="getByEmail" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_login
+        where email = #{email}
+    </select>
 </mapper>

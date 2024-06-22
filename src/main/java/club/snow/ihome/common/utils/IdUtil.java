@@ -6,7 +6,7 @@ import java.util.UUID;
  * The type IdUtil.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/18
+ * @date 2024.4.18
  */
 public class IdUtil {
 

@@ -8,7 +8,7 @@ import org.springframework.core.env.Environment;
  * The type EnvironmentUtil.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024 /4/21
+ * @date 2024 .4.21
  */
 public class EnvironmentUtil implements EnvironmentAware {
 

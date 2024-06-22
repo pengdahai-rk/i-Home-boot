@@ -1,18 +1,17 @@
 package club.snow.ihome.bean;
 
-import club.snow.ihome.common.enums.BusinessExceptionEnum;
-
-import java.io.Serializable;
+import club.snow.ihome.common.enums.BusinessInfoEnum;
+import club.snow.ihome.common.utils.LocaleUtil;
+import lombok.Data;
 
 /**
  * The type BaseResult.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/21
+ * @date 2024.4.21
  */
-public class BaseResult<T> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Data
+public class BaseResult<T> {
 
     private static final Integer SUCCESS;
 
@@ -25,59 +24,35 @@ public class BaseResult<T> implements Serializable {
     private T data;
 
     static {
-        SUCCESS = BusinessExceptionEnum.SUCCESS.getCode();
-        FAIL = BusinessExceptionEnum.FAIL.getCode();
+        SUCCESS = BusinessInfoEnum.SUCCESS.getCode();
+        FAIL = BusinessInfoEnum.FAIL.getCode();
     }
 
     public static <T> BaseResult<T> ok() {
-        return restResult(SUCCESS, "操作成功", null);
+        return restResult(SUCCESS, BusinessInfoEnum.SUCCESS.getMessage(), null);
     }
 
     public static <T> BaseResult<T> ok(T data) {
-        return restResult(SUCCESS, "操作成功", data);
-    }
-
-    public static <T> BaseResult<T> ok(String msg, T data) {
-        return restResult(SUCCESS, msg, data);
+        return restResult(SUCCESS, BusinessInfoEnum.SUCCESS.getMessage(), data);
     }
 
     public static <T> BaseResult<T> fail() {
-        return restResult(FAIL, "操作失败", null);
+        return restResult(FAIL, BusinessInfoEnum.FAIL.getMessage(), null);
     }
 
-    public static <T> BaseResult<T> fail(String msg, T data) {
-        return restResult(FAIL, msg, data);
+    public static <T> BaseResult<T> fail(String msg) {
+        return restResult(FAIL, msg, null);
     }
 
-    private static <T> BaseResult<T> restResult(int code, String msg, T data) {
+    public static <T> BaseResult<T> fail(Integer code, String msg, Object... args) {
+        return restResult(code, msg, null, args);
+    }
+
+    private static <T> BaseResult<T> restResult(int code, String msg, T data, Object... args) {
         BaseResult<T> apiResult = new BaseResult<>();
         apiResult.setCode(code);
+        apiResult.setMsg(LocaleUtil.get(msg, args));
         apiResult.setData(data);
-        apiResult.setMsg(msg);
         return apiResult;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }

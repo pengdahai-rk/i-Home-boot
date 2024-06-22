@@ -2,6 +2,7 @@ package club.snow.ihome.bean.domain;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,11 +10,12 @@ import java.util.Date;
  * The type BaseDO.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/20
+ * @date 2024.4.20
  */
 @Data
 public class IHomeBaseDO implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

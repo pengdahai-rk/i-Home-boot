@@ -4,18 +4,20 @@ import club.snow.ihome.bean.domain.IHomeBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
 import java.util.Date;
 
 /**
  * The type User info do.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/20
+ * @date 2024.4.20
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserInfoDO extends IHomeBaseDO {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

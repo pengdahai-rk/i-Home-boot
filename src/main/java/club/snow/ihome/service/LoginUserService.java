@@ -1,30 +1,28 @@
 package club.snow.ihome.service;
 
-import club.snow.ihome.bean.dto.UserLoginDTO;
-import club.snow.ihome.bean.req.SignInReq;
-import club.snow.ihome.bean.req.SignUpReq;
+import club.snow.ihome.bean.domain.entity.UserLoginDO;
 
 /**
  * The type LoginUserService.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
- * @since 2024/4/21
+ * @date 2024.4.21
  */
 public interface LoginUserService {
 
     /**
-     * Sign in login user.
+     * Gets by username.
      *
-     * @param signInReq the sign in req
-     * @return the login user
+     * @param username the username
+     * @return the by username
      */
-    UserLoginDTO signIn(SignInReq signInReq);
+    UserLoginDO getByUsername(String username);
 
     /**
-     * Sing up boolean.
+     * Gets by email.
      *
-     * @param signUpReq the sign up req
-     * @return the boolean
+     * @param email the email
+     * @return the by email
      */
-    Boolean singUp(SignUpReq signUpReq);
+    UserLoginDO getByEmail(String email);
 }
