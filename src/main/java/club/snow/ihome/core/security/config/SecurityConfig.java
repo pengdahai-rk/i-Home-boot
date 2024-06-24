@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
@@ -36,8 +34,7 @@ public class SecurityConfig {
     private CorsFilter corsFilter;
     @Autowired
     private JwtAuthenticationTokenFilter authenticationTokenFilter;
-
-
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorizeHttpReq) -> {
@@ -61,27 +58,5 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Autowired// 自动装配参数，下方的bean
-    @Bean
-    public CorsFilter corsFilter(UrlBasedCorsConfigurationSource configurationSource) {
-        return new CorsFilter(configurationSource);
-    }
-
-    // 也可以将方法内的实现整合到上面的corsFilter方法体内
-    @Bean
-    public UrlBasedCorsConfigurationSource configurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowCredentials(true);
-        // 允许的请求头
-        corsConfiguration.addAllowedHeader("*");
-        // 允许的方法
-        corsConfiguration.addAllowedMethod("*");
-        // 允许跨域请求域名
-        corsConfiguration.addAllowedOriginPattern("http://localhost*");
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
     }
 }

@@ -28,7 +28,7 @@ public class UserLoginDO extends IHomeBaseDO {
     /**
      * 是否注销 0正常 1注销 默认0
      */
-    private Boolean isActive;
+    private Integer isActive;
 
     /**
      * 用户类型（00系统用户 01注册用户）
