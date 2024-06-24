@@ -30,7 +30,7 @@ public class UserLoginDTO extends User {
     /**
      * 最近登录时间
      */
-    private Long signInDate;
+    private Long signInTime;
 
     /**
      * 最近登录IP
@@ -67,12 +67,12 @@ public class UserLoginDTO extends User {
         this.userId = userId;
     }
 
-    public Long getSignInDate() {
-        return signInDate;
+    public Long getSignInTime() {
+        return signInTime;
     }
 
-    public void setSignInDate(Long signInDate) {
-        this.signInDate = signInDate;
+    public void setSignInTime(Long signInTime) {
+        this.signInTime = signInTime;
     }
 
     public String getSignInIp() {

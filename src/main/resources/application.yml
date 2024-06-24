@@ -22,6 +22,8 @@ spring:
 token:
   # 令牌自定义标识
   header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz1234567890
   # 令牌有效期（单位分钟）
   expireTime: 30
 

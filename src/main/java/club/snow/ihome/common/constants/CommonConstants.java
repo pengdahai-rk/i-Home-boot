@@ -27,4 +27,18 @@ public class CommonConstants {
      */
     public static final String TOKEN_PREFIX = "Bearer ";
 
+    /**
+     * 每秒钟毫秒数
+     */
+    public static final long MILLIS_SECOND = 1000L;
+
+    /**
+     * 每分钟毫秒数
+     */
+    public static final long MILLIS_MINUTE = 60 * MILLIS_SECOND;
+
+    /**
+     * 每10分钟毫秒数
+     */
+    public static final long MILLIS_MINUTE_TEN = 10 * 60 * MILLIS_SECOND;
 }
