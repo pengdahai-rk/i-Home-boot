@@ -1,4 +1,4 @@
-package club.snow.ihome.service.web.security;
+package club.snow.ihome.core.security.service;
 
 import club.snow.ihome.service.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         return null;
     }
 }

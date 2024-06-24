@@ -4,8 +4,8 @@ import club.snow.ihome.bean.BaseResult;
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
 import club.snow.ihome.bean.req.SignUpReq;
+import club.snow.ihome.service.LoginService;
 import club.snow.ihome.service.TokenService;
-import club.snow.ihome.service.web.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +29,7 @@ public class UserController {
 
     @Autowired
     private TokenService tokenService;
-    
+
     @PostMapping("/sign-in")
     public BaseResult<Map<String, Object>> signIn(@RequestBody SignInReq signInReq) {
         UserLoginDTO userLoginDTO = loginService.signIn(signInReq);

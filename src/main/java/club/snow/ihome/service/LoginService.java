@@ -1,10 +1,11 @@
-package club.snow.ihome.service.web;
+package club.snow.ihome.service;
 
 import club.snow.ihome.bean.domain.entity.UserLoginDO;
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
+import club.snow.ihome.common.enums.BusinessInfoEnum;
 import club.snow.ihome.common.enums.SignTypeEnum;
-import club.snow.ihome.service.LoginUserService;
+import club.snow.ihome.common.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,9 @@ public class LoginService {
         } else if (Objects.equals(signInReq.getSignInType(), SignTypeEnum.EMAIL.getCode())) {
             userLoginDO = loginUserService.getByEmail(signInReq.getEmail());
         }
-        if (Objects.isNull(userLoginDO)) {
-            
+        if (Objects.isNull(userLoginDO) || !Objects.equals(signInReq.getPassword(), userLoginDO.getPassword())) {
+            throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
         }
-
         return null;
     }
 
