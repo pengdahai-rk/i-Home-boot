@@ -39,7 +39,7 @@ public class RedisTest {
     @Test
     public void testRedisOpsValue() {
         String key = "testRedisOpsValue:redis:test1";
-        UserLoginDTO userLoginDTO = new UserLoginDTO();
+        UserLoginDTO userLoginDTO = UserLoginDTO.builder().build();
         userLoginDTO.setToken("pengdahai216@126.com");
         userLoginDTO.setSignInIp("123123123");
         userLoginDTO.setUsername("");

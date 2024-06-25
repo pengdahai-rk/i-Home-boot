@@ -121,7 +121,7 @@ public class TokenService {
     // 创建token
     private String createToken(Map<String, Object> claims) {
         Date now = new Date();
-        long expireTimeMillis = expireTime * 2L;
+        long expireTimeMillis = expireTime * CommonConstants.MILLIS_MINUTE;
         JwtBuilder jwtBuilder = Jwts.builder()
                 .id("p7i") // id
                 .issuer("i-Home Developer") // 签发者
@@ -131,7 +131,7 @@ public class TokenService {
                 .expiration(new Date(now.getTime() + expireTimeMillis)) // 过期日期
                 .signWith(key);// 签名
         jwtBuilder.header().add("JWT", "i-Home/snow");
-        return jwtBuilder.compact();
+        return CommonConstants.TOKEN_PREFIX + jwtBuilder.compact();
     }
 
     // 获取token

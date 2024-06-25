@@ -76,13 +76,13 @@
     </appender>
 
     <!-- 系统模块日志级别控制  -->
-    <logger name="club.snow" level="info"/>
+    <logger name="club.snow" level="debug"/>
 
     <!-- Spring日志级别控制  -->
-    <logger name="org.springframework" level="warn"/>
+    <logger name="org.springframework" level="debug"/>
 
     <!--系统用户操作日志-->
-    <logger name="sys-user" level="info">
+    <logger name="sys-user" level="debug">
         <appender-ref ref="sys-user"/>
     </logger>
 

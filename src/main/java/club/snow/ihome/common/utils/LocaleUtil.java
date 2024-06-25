@@ -1,7 +1,9 @@
 package club.snow.ihome.common.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.Locale;
@@ -12,6 +14,7 @@ import java.util.Locale;
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @date 2024.06.21
  */
+@Slf4j
 public class LocaleUtil {
 
     /**
@@ -58,7 +61,14 @@ public class LocaleUtil {
         if (StringUtils.isBlank(key)) {
             return "";
         }
-        return getInstance().getMessage(key, params, locale);
+        String message;
+        try {
+            message = getInstance().getMessage(key, params, locale);
+        } catch (NoSuchMessageException e) {
+            log.warn("not config message, key:{}", key);
+            message = key;
+        }
+        return message;
     }
 
     private static MessageSource getInstance() {
