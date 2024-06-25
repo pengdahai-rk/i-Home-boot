@@ -47,7 +47,7 @@ public class LoginService {
             if (Objects.equals(signInReq.getSignInType(), SignTypeEnum.USERNAME.getCode())) {
                 authenticationToken = new UsernamePasswordAuthenticationToken(signInReq.getUserName(), signInReq.getPassword());
             } else {
-                authenticationToken = new EmailPasswordAuthenticationToken(signInReq.getUserName(), signInReq.getPassword());
+                authenticationToken = new EmailPasswordAuthenticationToken(signInReq.getEmail(), signInReq.getPassword());
             }
             // 该方法会去调用 UserDetailsService.loadUserByUsername
             Authentication authenticate = authenticationManager.authenticate(authenticationToken);

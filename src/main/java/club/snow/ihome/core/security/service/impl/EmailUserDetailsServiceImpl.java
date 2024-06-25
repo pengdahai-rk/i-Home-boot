@@ -34,7 +34,7 @@ public class EmailUserDetailsServiceImpl implements EmailUserDetailsService {
         if (Objects.isNull(userLoginDO)) {
             log.info("登录用户：{} 不存在.", email);
             throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
-        } else if (Objects.equals(userLoginDO.getIsActive(), YesOrNoEnum.NO.getCode())) {
+        } else if (Objects.equals(userLoginDO.getIsActive(), YesOrNoEnum.YES.getCode())) {
             log.info("登录用户：{} 已注销", email);
             throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
         }

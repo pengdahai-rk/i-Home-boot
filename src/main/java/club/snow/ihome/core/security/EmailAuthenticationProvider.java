@@ -43,9 +43,7 @@ public class EmailAuthenticationProvider implements AuthenticationProvider, Init
             throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
         }
         additionalAuthenticationChecks(loadedUser, (EmailPasswordAuthenticationToken) authentication);
-
-        Object principalToReturn = loadedUser.getUsername();
-        return createSuccessAuthentication(principalToReturn, authentication, loadedUser);
+        return createSuccessAuthentication(authentication, loadedUser);
     }
 
     @Override
@@ -53,8 +51,8 @@ public class EmailAuthenticationProvider implements AuthenticationProvider, Init
         return EmailPasswordAuthenticationToken.class.isAssignableFrom(authentication);
     }
 
-    public Authentication createSuccessAuthentication(Object principal, Authentication authentication, UserDetails user) {
-        EmailPasswordAuthenticationToken result = EmailPasswordAuthenticationToken.authenticated(principal, authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
+    public Authentication createSuccessAuthentication(Authentication authentication, UserDetails user) {
+        EmailPasswordAuthenticationToken result = EmailPasswordAuthenticationToken.authenticated(user, authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
         result.setDetails(authentication.getDetails());
         return result;
     }
