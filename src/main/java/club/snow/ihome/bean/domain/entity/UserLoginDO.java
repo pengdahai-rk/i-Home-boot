@@ -51,11 +51,6 @@ public class UserLoginDO extends IHomeBaseDO {
     private String email;
 
     /**
-     * 盐值
-     */
-    private String salt;
-
-    /**
      * 最近登录时间
      */
     private Date signInDate;

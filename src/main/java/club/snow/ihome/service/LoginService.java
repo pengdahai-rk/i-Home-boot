@@ -1,12 +1,18 @@
 package club.snow.ihome.service;
 
-import club.snow.ihome.bean.domain.entity.UserLoginDO;
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
-import club.snow.ihome.common.enums.BusinessInfoEnum;
 import club.snow.ihome.common.enums.SignTypeEnum;
-import club.snow.ihome.common.exception.BusinessException;
+import club.snow.ihome.core.security.EmailPasswordAuthenticationToken;
+import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -20,8 +26,12 @@ import java.util.Objects;
 @Service
 public class LoginService {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginService.class);
     @Autowired
     private LoginUserService loginUserService;
+
+    @Resource
+    private AuthenticationManager authenticationManager;
 
     /**
      * Sign in user login dto.
@@ -31,16 +41,22 @@ public class LoginService {
      */
     public UserLoginDTO signIn(SignInReq signInReq) {
         checkSignInParam(signInReq);
-        UserLoginDO userLoginDO = null;
-        if (Objects.equals(signInReq.getSignInType(), SignTypeEnum.USERNAME.getCode())) {
-            userLoginDO = loginUserService.getByUsername(signInReq.getUserName());
-        } else if (Objects.equals(signInReq.getSignInType(), SignTypeEnum.EMAIL.getCode())) {
-            userLoginDO = loginUserService.getByEmail(signInReq.getEmail());
+        UserLoginDTO loginDTO = null;
+        try {
+            AbstractAuthenticationToken authenticationToken;
+            if (Objects.equals(signInReq.getSignInType(), SignTypeEnum.USERNAME.getCode())) {
+                authenticationToken = new UsernamePasswordAuthenticationToken(signInReq.getUserName(), signInReq.getPassword());
+            } else {
+                authenticationToken = new EmailPasswordAuthenticationToken(signInReq.getUserName(), signInReq.getPassword());
+            }
+            // 该方法会去调用 UserDetailsService.loadUserByUsername
+            Authentication authenticate = authenticationManager.authenticate(authenticationToken);
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            loginDTO = (UserLoginDTO) authenticate.getPrincipal();
+        } catch (Exception e) {
+            log.error("signIn username:{},signIn error:", signInReq.getUserName(), e);
         }
-        if (Objects.isNull(userLoginDO) || !Objects.equals(signInReq.getPassword(), userLoginDO.getPassword())) {
-            throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
-        }
-        return null;
+        return loginDTO;
     }
 
     private void checkSignInParam(SignInReq signInReq) {
