@@ -5,8 +5,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * The type Home boot application.
@@ -21,9 +19,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
 public class IHomeBootApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(IHomeBootApplication.class, args);
-        ConfigurableEnvironment environment = run.getEnvironment();
-        log.info("i-Home start success! {}", environment.getClass());
+        SpringApplication.run(IHomeBootApplication.class, args);
+        log.info("i-Home-app start success!");
     }
 
 }
