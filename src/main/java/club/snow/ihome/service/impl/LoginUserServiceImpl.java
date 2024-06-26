@@ -36,4 +36,10 @@ public class LoginUserServiceImpl implements LoginUserService {
         }
         return userLoginDAO.getByEmail(email);
     }
+
+    @Override
+    public Boolean signUpUser(UserLoginDO userLoginDO) {
+        
+        return userLoginDAO.insertSelective(userLoginDO) > 0;
+    }
 }

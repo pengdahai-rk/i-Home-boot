@@ -22,14 +22,6 @@ public interface UserLoginDAO {
     int deleteByPrimaryKey(Long id);
 
     /**
-     * Insert int.
-     *
-     * @param record the record
-     * @return the int
-     */
-    int insert(UserLoginDO record);
-
-    /**
      * Insert selective int.
      *
      * @param record the record
@@ -53,14 +45,6 @@ public interface UserLoginDAO {
      */
     int updateByPrimaryKeySelective(UserLoginDO record);
 
-    /**
-     * Update by primary key int.
-     *
-     * @param record the record
-     * @return the int
-     */
-    int updateByPrimaryKey(UserLoginDO record);
-    
     /**
      * Gets by username.
      *
