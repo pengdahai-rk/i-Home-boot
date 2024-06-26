@@ -1,12 +1,14 @@
 package club.snow.ihome.core;
 
+import club.snow.ihome.common.utils.IdUtil;
+
 /**
  * The type Snow flake.
  *
  * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
  * @date 2024 /04/18
  */
-public class SnowFlake {
+public class Snowflake {
 
     /**
      * 起始的时间戳
@@ -23,8 +25,10 @@ public class SnowFlake {
     /**
      * 每一部分的最大值
      */
-    private final static long MAX_DATACENTER_NUM = ~(-1L << DATACENTER_BIT);
+    // 这个是二进制运算，就是5 bit最多只能有31个数字，也就是说机器id最多只能是32以内
+    public final static long MAX_DATACENTER_NUM = ~(-1L << DATACENTER_BIT);
     private final static long MAX_MACHINE_NUM = ~(-1L << MACHINE_BIT);
+    //每毫秒内产生的id数 2 的 12次方
     private final static long MAX_SEQUENCE = ~(-1L << SEQUENCE_BIT);
 
     /**
@@ -39,7 +43,23 @@ public class SnowFlake {
     private long sequence = 0L; // 序列号
     private long lastStamp = -1L;// 上一次时间戳
 
-    public SnowFlake(long datacenterId, long machineId) {
+    /**
+     * 构造，使用自动生成的工作节点ID和数据中心ID
+     */
+    public Snowflake() {
+        this(IdUtil.getWorkerId(IdUtil.getDataCenterId(MAX_DATACENTER_NUM), MAX_MACHINE_NUM));
+    }
+
+    /**
+     * 构造
+     *
+     * @param workerId 终端ID
+     */
+    public Snowflake(long workerId) {
+        this(workerId, IdUtil.getDataCenterId(MAX_DATACENTER_NUM));
+    }
+
+    public Snowflake(long datacenterId, long machineId) {
         if (datacenterId > MAX_DATACENTER_NUM || datacenterId < 0) {
             throw new IllegalArgumentException("datacenterId can't be greater than MAX_DATACENTER_NUM or less than 0");
         }

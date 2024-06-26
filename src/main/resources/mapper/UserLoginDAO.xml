@@ -27,27 +27,18 @@
         from user_login
         where id = #{id,jdbcType=BIGINT}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete
-        from user_login
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        update from user_login
+        set is_active = 0
         where id = #{id,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO"
-            useGeneratedKeys="true">
-        insert into user_login (user_name, is_active, user_type,
-                                `password`, phone, email, sign_in_date, sign_in_ip,
-                                pwd_update_date, create_time, create_by,
-                                update_time, update_by)
-        values (#{userName,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}, #{userType,jdbcType=VARCHAR},
-                #{password,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-                #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR},
-                #{pwdUpdateDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
-                #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id"
-            parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO" useGeneratedKeys="true">
+    </update>
+
+    <insert id="insertSelective" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO">
         insert into user_login
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
             <if test="userName != null">
                 user_name,
             </if>
@@ -66,10 +57,10 @@
             <if test="email != null">
                 email,
             </if>
-            <if test="loginDate != null">
+            <if test="signInDate != null">
                 sign_in_date,
             </if>
-            <if test="loginIp != null">
+            <if test="signInIp != null">
                 sign_in_ip,
             </if>
             <if test="pwdUpdateDate != null">
@@ -89,6 +80,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
             </if>
@@ -107,11 +101,11 @@
             <if test="email != null">
                 #{email,jdbcType=VARCHAR},
             </if>
-            <if test="loginDate != null">
-                #{loginDate,jdbcType=TIMESTAMP},
+            <if test="signInDate != null">
+                #{signInDate,jdbcType=TIMESTAMP},
             </if>
-            <if test="loginIp != null">
-                #{loginIp,jdbcType=VARCHAR},
+            <if test="signInIp != null">
+                #{signInIp,jdbcType=VARCHAR},
             </if>
             <if test="pwdUpdateDate != null">
                 #{pwdUpdateDate,jdbcType=TIMESTAMP},
@@ -151,11 +145,11 @@
             <if test="email != null">
                 email = #{email,jdbcType=VARCHAR},
             </if>
-            <if test="loginDate != null">
-                sign_in_date = #{loginDate,jdbcType=TIMESTAMP},
+            <if test="signInDate != null">
+                sign_in_date = #{signInDate,jdbcType=TIMESTAMP},
             </if>
-            <if test="loginIp != null">
-                sign_in_ip = #{loginIp,jdbcType=VARCHAR},
+            <if test="signInIp != null">
+                sign_in_ip = #{signInIp,jdbcType=VARCHAR},
             </if>
             <if test="pwdUpdateDate != null">
                 pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
@@ -173,23 +167,6 @@
                 update_by = #{updateBy,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO">
-        update user_login
-        set user_name       = #{userName,jdbcType=VARCHAR},
-            is_active       = #{isActive,jdbcType=BOOLEAN},
-            user_type       = #{userType,jdbcType=VARCHAR},
-            `password`      = #{password,jdbcType=CHAR},
-            phone           = #{phone,jdbcType=VARCHAR},
-            email           = #{email,jdbcType=VARCHAR},
-            sign_in_date    = #{loginDate,jdbcType=TIMESTAMP},
-            sign_in_ip      = #{loginIp,jdbcType=VARCHAR},
-            pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
-            create_time     = #{createTime,jdbcType=TIMESTAMP},
-            create_by       = #{createBy,jdbcType=VARCHAR},
-            update_time     = #{updateTime,jdbcType=TIMESTAMP},
-            update_by       = #{updateBy,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
 

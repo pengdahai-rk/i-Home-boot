@@ -25,4 +25,12 @@ public interface LoginUserService {
      * @return the by email
      */
     UserLoginDO getByEmail(String email);
+
+    /**
+     * Sign up user boolean.
+     *
+     * @param userLoginDO the user login do
+     * @return the boolean
+     */
+    Boolean signUpUser(UserLoginDO userLoginDO);
 }

@@ -6,6 +6,7 @@ import club.snow.ihome.common.exception.BusinessException;
 import club.snow.ihome.common.utils.SpringUtil;
 import club.snow.ihome.service.IHomeDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,9 @@ public class IHomeDemoController {
 
     @GetMapping("/get-bean")
     public BaseResult getBean(@RequestParam("beanName") String beanName) {
+        PasswordEncoder passwordEncoder = SpringUtil.getBean(PasswordEncoder.class);
+        String encode = passwordEncoder.encode("123456");
+        System.out.println(encode);
         Object bean = SpringUtil.getBean(beanName);
         return BaseResult.ok();
     }

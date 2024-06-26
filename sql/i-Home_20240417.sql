@@ -25,7 +25,7 @@ CREATE TABLE `user_info`
     `id`          bigint(0) AUTO_INCREMENT NOT NULL COMMENT '主键id',
     `user_id`     bigint(0)                NOT NULL COMMENT '用户id',
     `avatar`      varchar(100)                      DEFAULT '' comment '头像地址',
-    `gender`      tinyint(1)               NOT NULL DEFAULT 0 COMMENT '是否注销 0保密 1男 2女 3其它',
+    `gender`      tinyint(1)               NOT NULL DEFAULT 0 COMMENT '性别 0保密 1男 2女 3其它',
     `birthday`    date COMMENT '生日',
     `hometown`    varchar(500)                      DEFAULT '' COMMENT '家乡',
     `about_me`    varchar(500)                      DEFAULT '' COMMENT '关于我',

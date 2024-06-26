@@ -29,7 +29,6 @@ public class UserController {
 
     @Autowired
     private LoginService loginService;
-
     @Autowired
     private TokenService tokenService;
 
@@ -44,13 +43,13 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public BaseResult<Boolean> singUp(@RequestBody SignUpReq signUpReq) {
-
+        loginService.signUp(signUpReq);
         return BaseResult.ok();
     }
 
     @PostMapping("/sign-out")
-    public BaseResult<Boolean> singOut() {
-
-        return BaseResult.ok(tokenService.singOut());
+    public BaseResult<Boolean> signOut() {
+        loginService.signOut();
+        return BaseResult.ok();
     }
 }

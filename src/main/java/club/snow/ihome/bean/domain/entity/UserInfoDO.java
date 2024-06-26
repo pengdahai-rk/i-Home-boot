@@ -31,7 +31,7 @@ public class UserInfoDO extends IHomeBaseDO {
     private String avatar;
 
     /**
-     * 是否注销 0保密 1男 2女 3其它
+     * 性别 0保密 1男 2女 3其它
      */
     private Integer gender;
 

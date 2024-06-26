@@ -16,7 +16,6 @@ spring:
   profiles:
     # MySQL数据源配置
     active: druid,redisson
-  security:
 
 # jwt配置
 token:
@@ -54,4 +53,6 @@ mybatis:
 # Logger Config
 logging:
   level:
-    com.hexadecimal: debug
+    club.snow: info
+    org.springframework: warn
+
