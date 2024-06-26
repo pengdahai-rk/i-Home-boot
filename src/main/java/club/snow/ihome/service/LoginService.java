@@ -1,5 +1,6 @@
 package club.snow.ihome.service;
 
+import club.snow.ihome.bean.domain.entity.UserInfoDO;
 import club.snow.ihome.bean.domain.entity.UserLoginDO;
 import club.snow.ihome.bean.dto.UserLoginDTO;
 import club.snow.ihome.bean.req.SignInReq;
@@ -37,6 +38,9 @@ public class LoginService {
 
     @Autowired
     private LoginUserService loginUserService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Resource
     private AuthenticationManager authenticationManager;
@@ -78,14 +82,26 @@ public class LoginService {
      */
     public void signUp(SignUpReq signUpReq) {
         checkSignUpParam(signUpReq);
-        long id = IdUtil.getSnowflakeNextId();
-        UserLoginDO userLoginDO = buildUserLoginDO(signUpReq, id);
+        UserLoginDO userLoginDO = buildUserLoginDO(signUpReq);
+        UserInfoDO userInfoDO = buildUserInfoDO(userLoginDO, signUpReq);
+
+
         loginUserService.signUpUser(userLoginDO);
     }
 
-    private UserLoginDO buildUserLoginDO(SignUpReq signUpReq, long id) {
+    private UserInfoDO buildUserInfoDO(UserLoginDO userLoginDO, SignUpReq signUpReq) {
+        UserInfoDO userInfoDO = new UserInfoDO();
+        userInfoDO.setUserId(userInfoDO.getUserId());
+        userInfoDO.setAvatar(signUpReq.getAvatar());
+        userInfoDO.setGender(signUpReq.getGender());
+        userInfoDO.setCreateBy(userInfoDO.getCreateBy());
+        userInfoDO.setUpdateBy(userInfoDO.getUpdateBy());
+        return userInfoDO;
+    }
+
+    private UserLoginDO buildUserLoginDO(SignUpReq signUpReq) {
         UserLoginDO loginDO = new UserLoginDO();
-        loginDO.setId(id);
+        loginDO.setId(IdUtil.getSnowflakeNextId());
         loginDO.setUserName(signUpReq.getUserName());
         loginDO.setUserType(UserTypeEnum.REGISTER.getCode());
         loginDO.setPassword(SecurityUtil.encryptPassword(signUpReq.getPassword()));
