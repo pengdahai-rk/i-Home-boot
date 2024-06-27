@@ -47,6 +47,12 @@ public class UserAuthController {
         return BaseResult.ok();
     }
 
+    @PostMapping("/captcha")
+    public BaseResult<Map<String, Object>> getCaptcha() {
+        
+        return BaseResult.ok(loginService.getCaptcha());
+    }
+
     @PostMapping("/sign-out")
     public BaseResult<Boolean> signOut() {
         loginService.signOut();

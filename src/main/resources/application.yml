@@ -16,18 +16,16 @@ spring:
   profiles:
     # MySQL数据源配置
     active: druid,redisson
-
-# jwt配置
-token:
-  # 令牌自定义标识
-  header: Authorization
-  # 令牌密钥
-  secret: abcdefghijklmnopqrstuvwxyz1234567890
-  # 令牌有效期（单位分钟）
-  expireTime: 30
-
 # 自定义配置
 i-home:
+  # jwt配置
+  token:
+    # 令牌自定义标识
+    header: Authorization
+    # 令牌密钥
+    secret: abcdefghijklmnopqrstuvwxyz1234567890
+    # 令牌有效期（单位分钟）
+    expireTime: 30
   # 线程池配置
   thread-pool:
     # 核心线程数
@@ -42,7 +40,11 @@ i-home:
     name-prefix: i-Home
   # security config
   auth:
-    ignore-url: /api/user-auth/sign-in,/api/user-auth/sign-up
+    # 不需验证地址
+    ignore-url: /api/user-auth/sign-in,/api/user-auth/sign-up,/api/user-auth/captcha
+  captcha:
+    # 验证码类型 math 数组计算 char 字符验证
+    type: math
 
 # MyBatis
 mybatis:
@@ -56,6 +58,6 @@ mybatis:
 # Logger Config
 logging:
   level:
-    club.snow: debug
-    org.springframework: debug
+    club.snow: info
+    org.springframework: warn
 

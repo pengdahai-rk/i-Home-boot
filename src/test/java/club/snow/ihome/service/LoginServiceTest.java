@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Map;
+
 
 /**
  * The type Login service test.
@@ -41,5 +43,11 @@ class LoginServiceTest {
         signUpReq.setPhone("18702715850");
         signUpReq.setPassword("123456");
         loginService.signUp(signUpReq);
+    }
+
+    @Test
+    void getCaptcha() {
+        Map<String, Object> captcha = loginService.getCaptcha();
+        System.out.println(captcha.get("image"));
     }
 }

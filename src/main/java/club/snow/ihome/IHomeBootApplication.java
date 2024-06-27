@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 /**
  * The type Home boot application.
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 @Slf4j
 @MapperScan("club.snow.ihome.dao")
+@ConfigurationPropertiesScan(value = {"club.snow.ihome.common.config"})
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 // 排除数据库,redisson RedissonAutoConfigurationV2.class,SecurityAutoConfiguration.class\ManagementWebSecurityAutoConfiguration.class自动配置
 public class IHomeBootApplication {

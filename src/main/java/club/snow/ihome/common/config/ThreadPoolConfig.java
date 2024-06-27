@@ -2,7 +2,6 @@ package club.snow.ihome.common.config;
 
 import com.alibaba.ttl.threadpool.TtlExecutors;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -20,20 +19,15 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 public class ThreadPoolConfig {
 
-    @Value("${i-home.thread-pool.core-size:50}")
-    private int corePoolSize;
+    private final int corePoolSize = IHomeConfig.getThreadPool().getCoreSize();
 
-    @Value("${i-home.thread-pool.max-size:200}")
-    private int maxPoolSize;
+    private final int maxPoolSize = IHomeConfig.getThreadPool().getMaxSize();
 
-    @Value("${i-home.thread-pool.queue-capacity:1000}")
-    private int queueCapacity;
+    private final int queueCapacity = IHomeConfig.getThreadPool().getQueueCapacity();
 
-    @Value("${i-home.thread-pool.keep-alive:300}")
-    private int keepAliveSeconds;
+    private final int keepAliveSeconds = IHomeConfig.getThreadPool().getKeepAlive();
 
-    @Value("${i-home.thread-pool.name-prefix:system-thread}")
-    private String threadNamePrefix;
+    private final String threadNamePrefix = IHomeConfig.getThreadPool().getNamePrefix();
 
     @Bean(name = "iHomeThreadPool")
     public Executor threadPoolTaskExecutor() {
@@ -46,8 +40,8 @@ public class ThreadPoolConfig {
         // 线程池对拒绝任务(无线程可用)的处理策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
-        log.info("Thread pool init success! core pool size:{},max pool size:{},queue capacity:{},keep alive seconds:{},thread name prefix:{}"
-        ,corePoolSize, maxPoolSize, queueCapacity, keepAliveSeconds, threadNamePrefix);
+        log.info("i-Home thread pool init success! core pool size:{},max pool size:{},queue capacity:{},keep alive seconds:{},thread name prefix:{}"
+                , corePoolSize, maxPoolSize, queueCapacity, keepAliveSeconds, threadNamePrefix);
         return TtlExecutors.getTtlExecutor(executor);
     }
 

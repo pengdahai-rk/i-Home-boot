@@ -26,6 +26,7 @@
         <auth.jwt.version>4.4.0</auth.jwt.version>
         <auth.jjwt.version>0.12.5</auth.jjwt.version>
         <redisson.version>3.31.0</redisson.version>
+        <captcha.version>2.3.3</captcha.version>
     </properties>
 
     <dependencies>
@@ -110,6 +111,13 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google.guava.version}</version>
+        </dependency>
+
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>pro.fessional</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${captcha.version}</version>
         </dependency>
 
         <dependency>

@@ -1,5 +1,6 @@
 package club.snow.ihome.core.security.config;
 
+import club.snow.ihome.common.config.IHomeConfig;
 import club.snow.ihome.common.filter.JwtAuthenticationTokenFilter;
 import club.snow.ihome.core.security.CustomizeAccessDeniedHandler;
 import club.snow.ihome.core.security.CustomizeAuthenticationEntryPoint;
@@ -8,7 +9,6 @@ import club.snow.ihome.core.security.handler.LogoutSuccessHandlerImpl;
 import club.snow.ihome.core.security.service.EmailUserDetailsService;
 import club.snow.ihome.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,8 +44,7 @@ import java.util.List;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Value("${i-home.auth.ignore-url}")
-    private String[] ignoreUrl;
+    private final String[] ignoreUrl = IHomeConfig.getAuth().getIgnoreUrl();
     @Autowired
     private TokenService tokenService;
     @Autowired
