@@ -15,7 +15,7 @@ public class SignUpReq {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
 
     /**
      * 邮箱
@@ -26,16 +26,6 @@ public class SignUpReq {
      * 手机号
      */
     private String phone;
-
-    /**
-     * 头像地址
-     */
-    private String avatar;
-
-    /**
-     * 性别 0保密 1男 2女 3其它
-     */
-    private Integer gender;
 
     /**
      * 密码

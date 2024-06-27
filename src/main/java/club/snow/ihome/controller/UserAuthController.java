@@ -24,8 +24,8 @@ import java.util.Objects;
  * @date 2024.4.21
  */
 @RestController()
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/user-auth")
+public class UserAuthController {
 
     @Autowired
     private LoginService loginService;

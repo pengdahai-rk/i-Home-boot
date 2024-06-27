@@ -10,7 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
 
-
+/**
+ * The type Login user service impl test.
+ *
+ * @author <a href="mailto:pengdahai216@126.com">pengdahai</a>
+ * @date 2024.06.20
+ */
 @SpringBootTest
 class LoginUserServiceImplTest {
     @Autowired
@@ -35,7 +40,7 @@ class LoginUserServiceImplTest {
         UserLoginDO userLoginDO = new UserLoginDO();
         userLoginDO.setId(IdUtil.getSnowflakeNextId());
         userLoginDO.setIsActive(YesOrNoEnum.NO.getCode());
-        userLoginDO.setUserName("test");
+        userLoginDO.setUsername("test");
         userLoginDO.setPassword("$2a$10$2EJFiT7gxjQ2kLLEFngLsuvkUWGgEb1bm26KiEpFowmAQH8Qe1h9e");
         userLoginDO.setPhone("18702715850");
         userLoginDO.setEmail("1001");

@@ -13,7 +13,7 @@ public class SignInReq {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
 
     /**
      * 邮箱

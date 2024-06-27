@@ -1,5 +1,7 @@
 package club.snow.ihome.service;
 
+import club.snow.ihome.bean.domain.entity.UserInfoDO;
+
 /**
  * The interface User info service.
  *
@@ -7,4 +9,12 @@ package club.snow.ihome.service;
  * @date 2024.06.26
  */
 public interface UserInfoService {
+
+    /**
+     * Add user info long.
+     *
+     * @param userInfoDO the user info do
+     * @return the long
+     */
+    long addUserInfo(UserInfoDO userInfoDO);
 }

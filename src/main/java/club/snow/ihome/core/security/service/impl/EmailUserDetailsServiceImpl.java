@@ -38,7 +38,7 @@ public class EmailUserDetailsServiceImpl implements EmailUserDetailsService {
             log.info("登录用户：{} 已注销", email);
             throw new BusinessException(BusinessInfoEnum.USER_SING_NOT_EXIST);
         }
-        return UserLoginDTO.builder().userId(userLoginDO.getId()).username(userLoginDO.getUserName())
+        return UserLoginDTO.builder().userId(userLoginDO.getId()).username(userLoginDO.getUsername())
                 .email(userLoginDO.getEmail()).password(userLoginDO.getPassword()).phone(userLoginDO.getPhone())
                 .build();
     }

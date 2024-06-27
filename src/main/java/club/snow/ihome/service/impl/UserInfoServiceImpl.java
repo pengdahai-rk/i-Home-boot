@@ -1,7 +1,10 @@
 package club.snow.ihome.service.impl;
 
+import club.snow.ihome.bean.domain.entity.UserInfoDO;
+import club.snow.ihome.dao.UserInfoDAO;
 import club.snow.ihome.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,4 +16,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
+
+    @Autowired
+    private UserInfoDAO userInfoDAO;
+
+    @Override
+    public long addUserInfo(UserInfoDO userInfoDO) {
+
+        return userInfoDAO.insertSelective(userInfoDO);
+    }
 }

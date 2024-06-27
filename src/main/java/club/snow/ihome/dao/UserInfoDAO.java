@@ -11,21 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserInfoDAO {
-    /**
-     * Delete by primary key int.
-     *
-     * @param id the id
-     * @return the int
-     */
-    int deleteByPrimaryKey(Long id);
-
-    /**
-     * Insert int.
-     *
-     * @param record the record
-     * @return the int
-     */
-    int insert(UserInfoDO record);
 
     /**
      * Insert selective int.
@@ -50,12 +35,4 @@ public interface UserInfoDAO {
      * @return the int
      */
     int updateByPrimaryKeySelective(UserInfoDO record);
-
-    /**
-     * Update by primary key int.
-     *
-     * @param record the record
-     * @return the int
-     */
-    int updateByPrimaryKey(UserInfoDO record);
 }

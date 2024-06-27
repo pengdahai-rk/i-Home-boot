@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.entity.UserInfoDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="gender" jdbcType="BOOLEAN" property="gender"/>
         <result column="birthday" jdbcType="DATE" property="birthday"/>
@@ -15,7 +16,8 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_id, avatar, gender, birthday, hometown, about_me, create_time, create_by,
+        id
+        , user_id, nickname, avatar, gender, birthday, hometown, about_me, create_time, create_by,
     update_time, update_by
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -24,27 +26,17 @@
         from user_info
         where id = #{id,jdbcType=BIGINT}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete
-        from user_info
-        where id = #{id,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserInfoDO" useGeneratedKeys="true">
-        insert into user_info (user_id, avatar, gender,
-                               birthday, hometown, about_me,
-                               create_time, create_by, update_time,
-                               update_by)
-        values (#{userId,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{gender,jdbcType=BOOLEAN},
-                #{birthday,jdbcType=DATE}, #{hometown,jdbcType=VARCHAR}, #{aboutMe,jdbcType=VARCHAR},
-                #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
-                #{updateBy,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="club.snow.ihome.bean.domain.entity.UserInfoDO"
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="club.snow.ihome.bean.domain.entity.UserInfoDO"
             useGeneratedKeys="true">
         insert into user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId != null">
                 user_id,
+            </if>
+            <if test="nickname != null">
+                nickname,
             </if>
             <if test="avatar != null">
                 avatar,
@@ -78,6 +70,9 @@
             <if test="userId != null">
                 #{userId,jdbcType=BIGINT},
             </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
             <if test="avatar != null">
                 #{avatar,jdbcType=VARCHAR},
             </if>
@@ -110,8 +105,8 @@
     <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.entity.UserInfoDO">
         update user_info
         <set>
-            <if test="userId != null">
-                user_id = #{userId,jdbcType=BIGINT},
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
             </if>
             <if test="avatar != null">
                 avatar = #{avatar,jdbcType=VARCHAR},
@@ -128,33 +123,10 @@
             <if test="aboutMe != null">
                 about_me = #{aboutMe,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="updateBy != null">
                 update_by = #{updateBy,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="club.snow.ihome.bean.domain.entity.UserInfoDO">
-        update user_info
-        set user_id     = #{userId,jdbcType=BIGINT},
-            avatar      = #{avatar,jdbcType=VARCHAR},
-            gender      = #{gender,jdbcType=BOOLEAN},
-            birthday    = #{birthday,jdbcType=DATE},
-            hometown    = #{hometown,jdbcType=VARCHAR},
-            about_me    = #{aboutMe,jdbcType=VARCHAR},
-            create_time = #{createTime,jdbcType=TIMESTAMP},
-            create_by   = #{createBy,jdbcType=VARCHAR},
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            update_by   = #{updateBy,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
 </mapper>

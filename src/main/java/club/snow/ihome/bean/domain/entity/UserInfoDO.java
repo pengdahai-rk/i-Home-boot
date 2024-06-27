@@ -26,6 +26,11 @@ public class UserInfoDO extends IHomeBaseDO {
     private Long userId;
 
     /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 头像地址
      */
     private String avatar;

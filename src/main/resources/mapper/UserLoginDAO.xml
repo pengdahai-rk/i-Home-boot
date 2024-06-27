@@ -3,7 +3,7 @@
 <mapper namespace="club.snow.ihome.dao.UserLoginDAO">
     <resultMap id="BaseResultMap" type="club.snow.ihome.bean.domain.entity.UserLoginDO">
         <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
         <result column="user_type" jdbcType="VARCHAR" property="userType"/>
         <result column="password" jdbcType="CHAR" property="password"/>
@@ -19,7 +19,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id
-        , user_name, is_active, user_type, `password`, phone, email, sign_in_date,sign_in_ip, pwd_update_date,create_time, create_by, update_time, update_by
+        , username, is_active, user_type, `password`, phone, email, sign_in_date,sign_in_ip, pwd_update_date,create_time, create_by, update_time, update_by
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -39,8 +39,8 @@
             <if test="id != null">
                 id,
             </if>
-            <if test="userName != null">
-                user_name,
+            <if test="username != null">
+                username,
             </if>
             <if test="isActive != null">
                 is_active,
@@ -83,8 +83,8 @@
             <if test="id != null">
                 #{id,jdbcType=BIGINT},
             </if>
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
             </if>
             <if test="isActive != null">
                 #{isActive,jdbcType=BOOLEAN},
@@ -127,9 +127,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="club.snow.ihome.bean.domain.entity.UserLoginDO">
         update user_login
         <set>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
             <if test="isActive != null">
                 is_active = #{isActive,jdbcType=BOOLEAN},
             </if>
@@ -154,15 +151,6 @@
             <if test="pwdUpdateDate != null">
                 pwd_update_date = #{pwdUpdateDate,jdbcType=TIMESTAMP},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createBy != null">
-                create_by = #{createBy,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
             <if test="updateBy != null">
                 update_by = #{updateBy,jdbcType=VARCHAR},
             </if>
@@ -174,7 +162,7 @@
         select
         <include refid="Base_Column_List"/>
         from user_login
-        where user_name = #{username}
+        where username = #{username}
     </select>
 
     <select id="getByEmail" resultMap="BaseResultMap">
