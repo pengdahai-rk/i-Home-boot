@@ -1,5 +1,6 @@
 package club.snow.ihome.core.security.config;
 
+import club.snow.ihome.common.config.IHomeConfig;
 import club.snow.ihome.common.filter.JwtAuthenticationTokenFilter;
 import club.snow.ihome.core.security.CustomizeAccessDeniedHandler;
 import club.snow.ihome.core.security.CustomizeAuthenticationEntryPoint;
@@ -43,6 +44,7 @@ import java.util.List;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    private final String[] ignoreUrl = IHomeConfig.getAuth().getIgnoreUrl();
     @Autowired
     private TokenService tokenService;
     @Autowired
@@ -59,8 +61,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorizeHttpReq) -> authorizeHttpReq
-                        .requestMatchers("/api/user/sign-in").permitAll()// 登录接口放行
-                        .anyRequest().authenticated()).csrf(AbstractHttpConfigurer::disable)// CSRF跨域禁用，因为不使用session
+                        .requestMatchers(ignoreUrl).permitAll()// 登录接口放行
+                        .anyRequest().authenticated())
+                .csrf(AbstractHttpConfigurer::disable)// CSRF跨域禁用，因为不使用session
                 // 基于token，不通过session创建管理SecurityContextHolder
                 .sessionManagement(SessionManagementConfigurer::disable)
                 .exceptionHandling(exception -> exception
@@ -84,7 +87,7 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer ignoringCustomizer() {
         // 解决登录接口走 jwtAuthenticationTokenFilter等自定义filter
-        return (web) -> web.ignoring().requestMatchers("/api/user/sign-in");
+        return (web) -> web.ignoring().requestMatchers(ignoreUrl);
     }
 
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() {

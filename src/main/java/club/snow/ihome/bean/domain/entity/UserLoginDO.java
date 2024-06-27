@@ -23,7 +23,7 @@ public class UserLoginDO extends IHomeBaseDO {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
 
     /**
      * 是否注销 0正常 1注销 默认0

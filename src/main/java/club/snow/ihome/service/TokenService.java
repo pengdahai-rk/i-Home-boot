@@ -1,6 +1,7 @@
 package club.snow.ihome.service;
 
 import club.snow.ihome.bean.dto.UserLoginDTO;
+import club.snow.ihome.common.config.IHomeConfig;
 import club.snow.ihome.common.constants.CacheConstants;
 import club.snow.ihome.common.constants.CommonConstants;
 import club.snow.ihome.common.utils.IdUtil;
@@ -12,7 +13,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -32,14 +32,11 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class TokenService {
 
-    @Value("${token.header:Authorization}")
-    private String header;
+    private final String header = IHomeConfig.getToken().getHeader();
 
-    @Value("${token.expireTime:30}")
-    private int expireTime; // 分钟
+    private final Long expireTime = IHomeConfig.getToken().getExpireTime(); // 分钟
 
-    @Value("${token.secret:abcdefghijklmnopqrstuvwxyz1234567890}")
-    private String secret;
+    private final String secret = IHomeConfig.getToken().getSecret();
 
     private static SecretKey key;
 

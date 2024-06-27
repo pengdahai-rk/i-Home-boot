@@ -26,6 +26,17 @@ public class IdUtil {
     }
 
     /**
+     * Simple random uuid string.
+     * 去除横杠
+     *
+     * @return the string
+     */
+    public static String simpleRandomUUID() {
+
+        return randomUUID().replaceAll("-", "");
+    }
+
+    /**
      * Random uuid string.
      *
      * @return the string
@@ -106,5 +117,5 @@ public class IdUtil {
             return processName.hashCode();
         }
     }
-    
+
 }

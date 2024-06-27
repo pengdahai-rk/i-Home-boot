@@ -13,7 +13,7 @@ public class SignInReq {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
 
     /**
      * 邮箱
@@ -29,4 +29,14 @@ public class SignInReq {
      * 登录类别 1-用户名 2-邮箱
      */
     private Integer signInType;
+
+    /**
+     * 唯一标识
+     */
+    private String uuid;
+
+    /**
+     * 验证码
+     */
+    private String captcha;
 }

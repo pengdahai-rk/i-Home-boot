@@ -24,8 +24,8 @@ import java.util.Objects;
  * @date 2024.4.21
  */
 @RestController()
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/user-auth")
+public class UserAuthController {
 
     @Autowired
     private LoginService loginService;
@@ -45,6 +45,12 @@ public class UserController {
     public BaseResult<Boolean> singUp(@RequestBody SignUpReq signUpReq) {
         loginService.signUp(signUpReq);
         return BaseResult.ok();
+    }
+
+    @PostMapping("/captcha")
+    public BaseResult<Map<String, Object>> getCaptcha() {
+        
+        return BaseResult.ok(loginService.getCaptcha());
     }
 
     @PostMapping("/sign-out")
