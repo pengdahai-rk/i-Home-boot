@@ -4,7 +4,8 @@ spring:
     username: admin
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/i-home?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    # docker容器内部访问宿主机http://host.docker.internal 127.0.0.1
+    url: jdbc:mysql://host.docker.internal:3306/i-home?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
       &useSSL=true&serverTimezone=UTC
     # druid 连接池管理
     type: com.alibaba.druid.pool.DruidDataSource
