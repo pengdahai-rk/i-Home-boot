@@ -15,4 +15,10 @@ public interface IHomeDemoService {
      * @return the string
      */
     String getString(String words);
+
+
+    String transactionTest(String words);
+
+
+    String transactionTest2(String words);
 }
