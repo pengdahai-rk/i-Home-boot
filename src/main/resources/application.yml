@@ -15,7 +15,7 @@ spring:
     fallback-to-system-locale: false
   profiles:
     # MySQL数据源配置
-    active: druid,redisson
+    active: druid,redisson,rocketmq
 # 自定义配置
 i-home:
   # jwt配置
@@ -60,4 +60,3 @@ logging:
   level:
     club.snow: info
     org.springframework: warn
-

@@ -26,6 +26,7 @@
         <apache.lang3.version>3.14.0</apache.lang3.version>
         <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
         <alibaba.ttl.version>2.14.4</alibaba.ttl.version>
+        <rocketmq.version>2.3.1</rocketmq.version>
         <alibaba.druid.stater.version>1.2.22</alibaba.druid.stater.version>
         <auth.jwt.version>4.4.0</auth.jwt.version>
         <auth.jjwt.version>0.12.5</auth.jjwt.version>
@@ -109,6 +110,23 @@
             <groupId>com.alibaba</groupId>
             <artifactId>transmittable-thread-local</artifactId>
             <version>${alibaba.ttl.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-spring-boot-starter -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>${rocketmq.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.errorprone</groupId>
+                    <artifactId>error_prone_annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
