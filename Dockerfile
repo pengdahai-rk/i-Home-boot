@@ -1,5 +1,5 @@
 # 基础镜像，自行构建ubuntu jdk21环境镜像
-FROM p7i/jdk21:1.0
+FROM p7i/jdk17:1.0
 # 添加元数据
 LABEL authors="p7i"
 # 维护者信息
