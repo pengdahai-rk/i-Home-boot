@@ -2,7 +2,8 @@ spring:
   data:
     redis:
       database: 0
-      host: 127.0.0.1
+      # docker容器内部访问宿主机http://host.docker.internal 127.0.0.1
+      host: host.docker.internal
       port: 6379
       password: Redsbx@123
       redisson:
@@ -27,7 +28,8 @@ spring:
             # 客户端名称
             clientName: redis
             # 节点地址
-            address: redis://127.0.0.1:6379
+            # docker容器内部访问宿主机http://host.docker.internal 127.0.0.1
+            address: redis://host.docker.internal:6379
             # 发布和订阅连接的最小空闲连接数
             subscriptionConnectionMinimumIdleSize: 1
             # 发布和订阅连接池大小

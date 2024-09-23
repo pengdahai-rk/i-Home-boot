@@ -154,6 +154,16 @@ public class RedisUtil {
     }
 
     /**
+     * Delete object boolean.
+     *
+     * @param key the key
+     * @return the boolean
+     */
+    public boolean deleteObject(final String key) {
+        return Boolean.TRUE.equals(redisTemplate.delete(key));
+    }
+
+    /**
      * 获得缓存的基本对象。
      *
      * @param key 缓存键值

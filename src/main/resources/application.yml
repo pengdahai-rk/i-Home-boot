@@ -15,7 +15,7 @@ spring:
     fallback-to-system-locale: false
   profiles:
     # MySQL数据源配置
-    active: druid,redisson
+    active: druid,redisson,rocketmq
 # 自定义配置
 i-home:
   # jwt配置
@@ -41,7 +41,7 @@ i-home:
   # security config
   auth:
     # 不需验证地址
-    ignore-url: /api/user-auth/sign-in,/api/user-auth/sign-up,/api/user-auth/captcha
+    ignore-url: /api/user-auth/sign-in,/api/user-auth/sign-up,/api/user-auth/captcha,/api/**
   captcha:
     # 验证码类型 math 数组计算 char 字符验证
     type: math
@@ -60,4 +60,3 @@ logging:
   level:
     club.snow: info
     org.springframework: warn
-

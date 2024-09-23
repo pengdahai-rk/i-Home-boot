@@ -43,19 +43,19 @@ public class UserAuthController {
 
     @PostMapping("/sign-up")
     public BaseResult<Boolean> singUp(@RequestBody SignUpReq signUpReq) {
-        loginService.signUp(signUpReq);
-        return BaseResult.ok();
+
+        return BaseResult.ok(loginService.signUp(signUpReq));
     }
 
     @PostMapping("/captcha")
     public BaseResult<Map<String, Object>> getCaptcha() {
-        
+
         return BaseResult.ok(loginService.getCaptcha());
     }
 
     @PostMapping("/sign-out")
     public BaseResult<Boolean> signOut() {
-        loginService.signOut();
-        return BaseResult.ok();
+
+        return BaseResult.ok(loginService.signOut());
     }
 }

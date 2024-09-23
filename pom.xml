@@ -11,17 +11,22 @@
 
     <groupId>club.snow.i-Home</groupId>
     <artifactId>i-Home-boot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>i-Home-boot</name>
-    <description>i-Home-boot</description>
+    <description>i-Home-boot Family Records</description>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis.boot.version>3.0.3</mybatis.boot.version>
         <google.guava.version>33.1.0-jre</google.guava.version>
         <apache.lang3.version>3.14.0</apache.lang3.version>
         <apache.commons-collections4.version>4.5.0-M1</apache.commons-collections4.version>
         <alibaba.ttl.version>2.14.4</alibaba.ttl.version>
+        <rocketmq.version>2.3.1</rocketmq.version>
         <alibaba.druid.stater.version>1.2.22</alibaba.druid.stater.version>
         <auth.jwt.version>4.4.0</auth.jwt.version>
         <auth.jjwt.version>0.12.5</auth.jjwt.version>
@@ -107,6 +112,23 @@
             <version>${alibaba.ttl.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-spring-boot-starter -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>${rocketmq.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.errorprone</groupId>
+                    <artifactId>error_prone_annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -164,6 +186,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -179,5 +202,31 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 
 </project>

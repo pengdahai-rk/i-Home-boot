@@ -25,10 +25,15 @@ public class IHomeLocaleResolver extends AbstractLocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         String lang = request.getHeader("lang");
-        // 仅支持中英文，默认中文
+        // 仅支持中英文
         if (StringUtils.isNotBlank(lang) && Objects.equals(lang, "en-Us")) {
             return Locale.US;
         }
+        // 仅支持中英文
+        if (StringUtils.isNotBlank(lang) && Objects.equals(lang, "zh-CN")) {
+            return Locale.CHINA;
+        }
+        // 使用服务器默认语言
         return Locale.getDefault();
     }
 

@@ -21,6 +21,7 @@ import club.snow.ihome.core.security.EmailPasswordAuthenticationToken;
 import com.google.code.kaptcha.Producer;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -94,7 +95,19 @@ public class LoginService {
     }
 
     private void checkSignInParam(SignInReq signInReq) {
+        validateCaptcha(signInReq.getCaptcha(), signInReq.getUuid());
+    }
 
+    private void validateCaptcha(String captcha, String uuid) {
+        String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + uuid;
+        String redisCaptcha = redisUtil.getCacheObject(verifyKey);
+        redisUtil.deleteObject(verifyKey);
+        if (StringUtils.isBlank(redisCaptcha)) {
+            throw new BusinessException(BusinessInfoEnum.FAIL);
+        }
+        if (StringUtils.equalsIgnoreCase(captcha, redisCaptcha)) {
+            throw new BusinessException(BusinessInfoEnum.FAIL);
+        }
     }
 
     /**
@@ -102,7 +115,7 @@ public class LoginService {
      *
      * @param signUpReq the sign-up req
      */
-    public void signUp(SignUpReq signUpReq) {
+    public Boolean signUp(SignUpReq signUpReq) {
         checkSignUpParam(signUpReq);
         UserLoginDO userLoginDO = buildUserLoginDO(signUpReq);
         UserInfoDO userInfoDO = buildUserInfoDO(userLoginDO);
@@ -110,6 +123,7 @@ public class LoginService {
             loginUserService.signUpUser(userLoginDO);
             userInfoService.addUserInfo(userInfoDO);
         });
+        return Boolean.TRUE;
     }
 
     private UserInfoDO buildUserInfoDO(UserLoginDO userLoginDO) {
@@ -139,7 +153,7 @@ public class LoginService {
     }
 
     private void checkSignUpParam(SignUpReq signUpReq) {
-
+        validateCaptcha(signUpReq.getCaptcha(), signUpReq.getUuid());
     }
 
     /**
@@ -182,7 +196,8 @@ public class LoginService {
     /**
      * Sign out.
      */
-    public void signOut() {
+    public Boolean signOut() {
 
+        return Boolean.TRUE;
     }
 }
